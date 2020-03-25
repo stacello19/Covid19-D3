@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+}
+nav {
+    display: flex;
+    height: 90px;
+    background-color: aquamarine;
+    justify-content: space-between;
+}
+h5 {
+    margin: 0;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+
+.title {
+    font-size: 80px;
+}
+span {
+    color: red;
+}
+
+.clock {
+    display: flex;
+    font-size: 22px;
+    text-align: center;
+}
+.update{
+    border: 3px solid black;
+    width: 150px;
+    height: 80px;
+}
+.current{
+    border: 3px solid black;
+    width: 150px;
+    height: 80px;
+    margin-left: 10px;
+}
+
+.summary {
+    border: 3px solid black;
+    height: 90px; 
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 30px;
+}
+
+.info {
+    display: flex;
+    height: 450px;
+}
+.legend {
+    flex: 1;
+    background-color: yellow;
+}
+.row {
+    flex: 2;
+    background-color: blue;
+}

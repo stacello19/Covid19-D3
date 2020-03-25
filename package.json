@@ -1,0 +1,12 @@
+{
+  "name": "covid19chart",
+  "version": "1.0.0",
+  "description": "chart about covid19",
+  "main": "data.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "stacy cho",
+  "license": "ISC",
+  "dependencies": {}
+}

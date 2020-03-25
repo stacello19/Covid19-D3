@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel='stylesheet' href='./style.css'> 
+    <title>Document</title>
+</head>
+<body>
+    <div class='container'>
+        <nav>
+            <div class='title'>COVID<span>19</span></div>
+            <div class='clock'>
+                <div class='update'>
+                    <h5>LAST UPDATE</h5>
+                    <div class='updateDate'></div>
+                    <div class='updateClock'></div>
+                </div>
+                <div class='current'>
+                    <h5>CURRENT TIME</h5>
+                    <div class='currentDate'></div>
+                    <div class='currentClock'></div>
+                </div>
+            </div>
+        </nav>
+        <div class='summary'>
+            <div class='cases'>
+                <p>Cases: <span class='case'></span></p>
+            </div>
+            <div class='deaths'>
+                <p>Deaths: <span class='death'></span></p>
+            </div>
+            <div class='recovers'>
+                <p>Recovers: <span class='recover'></span></p>
+            </div>
+        </div>
+        <div class='info'>
+            <div class='legend'></div>
+            <div class='row'>
+                <div id='chart-area'></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='./data.js'></script>
+
+</html>
