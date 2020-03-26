@@ -71,21 +71,77 @@ async function getFilterCountry(country) {
     console.log(oneCountry)
 }
 
-async function timeLine(country) {
-    let USA = await axios.get(`https://corona.lmao.ninja/v2/historical/${country}`)
+async function timeLine() {
+    let countries = await axios.get(`https://corona.lmao.ninja/v2/historical`)
                         .then(response => {
                             return response.data
                         })
                         .catch(err => {
                             console.error(err);
-                        })
-    console.log(USA)
+                        });
+    
+    console.log(countries)
+    let width = 960,
+        height = 500;
+
+    let continentColor = d3.scale.category20c();
+    let projection = d3.geo.kavrayskiy7();
+    graticule = d3.geo.graticule();
+
+    let path = d3.geo.path()
+            .projection(projection);
+
+    let delay = d3.time.scale()
+                    .domain([new Date(2020-01-22), new Date()])
+                    .range([0, 1000]);
+
+    let svg = d3.select("#chart-area")
+            .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+    svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+    svg.append("path")
+    .datum(graticule.outline)
+    .attr("class", "graticule outline")
+    .attr("d", path);
+
+    d3.json("https://unpkg.com/world-atlas@1/world/110m.json", (error, world) =>{
+        console.log(world)
+    if (error) throw error;
+    svg.selectAll("path")
+        .data(topojson.feature(world,world.objects.countries).features)
+        .enter().append("path")
+        .attr('class', 'country')
+        .attr("d", path)
+    });
+
+    
+    // countries.forEach(country => {
+    //     console.log('--',country)
+    //     // let infected = country.timeline.cases;
+    //     // for(let date in infected) {
+    //     //     console.log(date, )
+    //         // svg.selectAll('path')
+    //         //     .attr('fill', (d,i) => console.log(d))
+    //         // d3.time.out(() => {
+    //         //     g.attr('fill-opacity', 1)
+    //         //     .transition()
+    //         //         .attr('fill-opacity', 0)
+    //         // }, delay(date))
+    //         // let patients = infected[date];
+    //     //}
+    // })
 }
 
 getAll()
 getCountries();
 // getFilterCountry('China');
-timeLine('USA');
+timeLine();
 
 //Time
 const currentClock = document.querySelector('.currentClock');
@@ -105,41 +161,6 @@ currentDate.innerHTML = `${month}/${day}/${year}`
 currentClock.innerHTML = `${hr}:${min}${time}`
 
 
-
-// D3 data chart
-let width = 960,
-    height = 500;
-    var continentColor = d3.scale.category10();
-let projection = d3.geo.kavrayskiy7(),
-    color = d3.scale.category20(),
-    graticule = d3.geo.graticule();
-
-let path = d3.geo.path()
-            .projection(projection);
-
-let svg = d3.select("#chart-area")
-            .append("svg")
-                .attr("width", width)
-                .attr("height", height);
-
-svg.append("path")
-    .datum(graticule)
-    .attr("class", "graticule")
-    .attr("d", path);
-
-svg.append("path")
-    .datum(graticule.outline)
-    .attr("class", "graticule outline")
-    .attr("d", path);
-
-d3.json("https://unpkg.com/world-atlas@1/world/110m.json", (error, world) =>{
-    if (error) throw error;
-    svg.selectAll("path")
-        .data(topojson.feature(world,world.objects.countries).features)
-        .enter().append("path")
-        .attr('fill', (d, i) => continentColor(i))
-        .attr("d", path)
-    });
 
 
 
