@@ -52,9 +52,9 @@ async function getCountries() {
     const legend = document.querySelector('.legend');
     for(let i=0; i < countries.length; i++) {
         let newDiv = document.createElement('div');
-        newDiv.style = 'font-size: 20px; border: 3px solid black; margin: 3px;'
+        newDiv.style = 'font-size: 20px; border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: lightgray;'
         let htmlMarkup = `<h3>${countries[i].country}</h3>
-                         <p>Total Cases: ${countries[i].cases}.  Today Cases: ${countries[i].todayCases}. Today Deaths: ${countries[i].todayDeaths}</p>`
+                         <p>Total Cases: ${countries[i].cases}</p><p>Today Cases: ${countries[i].todayCases}</p><p>Today Deaths: ${countries[i].todayDeaths}</p>`
         newDiv.innerHTML = htmlMarkup;
         legend.append(newDiv)
     }
@@ -71,9 +71,21 @@ async function getFilterCountry(country) {
     console.log(oneCountry)
 }
 
+async function timeLine(country) {
+    let USA = await axios.get(`https://corona.lmao.ninja/v2/historical/${country}`)
+                        .then(response => {
+                            return response.data
+                        })
+                        .catch(err => {
+                            console.error(err);
+                        })
+    console.log(USA)
+}
+
 getAll()
 getCountries();
 // getFilterCountry('China');
+timeLine('USA');
 
 //Time
 const currentClock = document.querySelector('.currentClock');
@@ -91,6 +103,43 @@ min < 10 ? min = `0${min}` : min;
 
 currentDate.innerHTML = `${month}/${day}/${year}`
 currentClock.innerHTML = `${hr}:${min}${time}`
+
+
+
+// D3 data chart
+let width = 960,
+    height = 500;
+    var continentColor = d3.scale.category10();
+let projection = d3.geo.kavrayskiy7(),
+    color = d3.scale.category20(),
+    graticule = d3.geo.graticule();
+
+let path = d3.geo.path()
+            .projection(projection);
+
+let svg = d3.select("#chart-area")
+            .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+svg.append("path")
+    .datum(graticule.outline)
+    .attr("class", "graticule outline")
+    .attr("d", path);
+
+d3.json("https://unpkg.com/world-atlas@1/world/110m.json", (error, world) =>{
+    if (error) throw error;
+    svg.selectAll("path")
+        .data(topojson.feature(world,world.objects.countries).features)
+        .enter().append("path")
+        .attr('fill', (d, i) => continentColor(i))
+        .attr("d", path)
+    });
 
 
 

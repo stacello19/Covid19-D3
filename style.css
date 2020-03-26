@@ -12,6 +12,10 @@ h5 {
     text-align: center;
     border-bottom: 3px solid black;
 }
+h3 {
+    margin: 0;
+    color: rgb(236, 35, 79);
+}
 
 .title {
     font-size: 80px;
@@ -51,9 +55,28 @@ span {
 }
 .legend {
     flex: 1;
-    background-color: yellow;
 }
 .row {
     flex: 2;
-    background-color: blue;
 }
+
+/* D3 */
+.country {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: .5px;
+    stroke-linejoin: round;
+  }
+  
+.graticule {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .3;
+    stroke-width: .5px;
+    }
+
+.graticule.outline {
+    stroke: #333;
+    stroke-opacity: 1;
+    stroke-width: 1.5px;
+    }
