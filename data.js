@@ -35,9 +35,9 @@ async function getAll() {
     let curRes = curCases%1000;
     let deaRes = curDeaths%1000;
     let recRes = curRecovered%1000;
-    cases.innerHTML = `${curCases.slice(0, curCases.length-3)},${curRes !== 0 ? curRes : 000}`;
-    deaths.innerHTML = `${curDeaths.slice(0, curDeaths.length-3)},${deaRes !== 0 ? deaRes : 000}`;
-    recovers.innerHTML = `${curRecovered.slice(0, curRecovered.length-3)},${recRes !== 0 ? recRes : 000}`;
+    cases.innerHTML = `${curCases.slice(0, curCases.length-3)},${curRes !== 0 ? curRes : '000'}`;
+    deaths.innerHTML = `${curDeaths.slice(0, curDeaths.length-3)},${deaRes !== 0 ? deaRes : '000'}`;
+    recovers.innerHTML = `${curRecovered.slice(0, curRecovered.length-3)},${recRes !== 0 ? recRes : '000'}`;
 }
 
 async function getCountries() {
