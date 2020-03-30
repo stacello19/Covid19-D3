@@ -303,7 +303,7 @@ async function getCountries() {
                         .catch(err => {
                             console.error(err);
                         })
-    console.log(countries)
+ 
     const legend = document.querySelector('.legend');
     for(let i=0; i < countries.length; i++) {
         let newDiv = document.createElement('div');
@@ -334,7 +334,6 @@ async function timeLine() {
                         .catch(err => {
                             console.error(err);
                         });
-
     let width = 960,
         height = 500;
 
@@ -372,26 +371,42 @@ async function timeLine() {
         .enter().append("path")
         .attr('class', 'country')
         .attr('fill', (d) => {
+            // console.log(d.geometry.coordinates[0][0])
             let countryName = originData[0][d.id];
-            if(countryName !== undefined) {
-                countryName = originData[0][d.id].toLowerCase()
+            let coord = getCoord(d.geometry.coordinates[0][0]);
+
+            if(countryName !== undefined && coord !== undefined) {
+                countryName = originData[0][d.id];
+                coord = getCoord(d.geometry.coordinates[0][0]);
             }
             let prev = null;
             let obj = {};
             countries.forEach((country, i) => {
-
                 if(country.country === countryName && prev === country.country) {
                     cleanData(countryName, country.timeline, reformatData)
                 } else if(!prev && country.country === countryName) {
                     prev = countryName;
-                    obj[countryName] = {'cases': country.timeline.cases, 'deaths': country.timeline.deaths};
+                    obj[countryName] = {'xy': coord, 'cases': country.timeline.cases, 'deaths': country.timeline.deaths};
                     reformatData.push(obj);
                 }
             });
         })
-        .attr("d", path)
-    })
-    
+        .attr("d", path);
+
+
+        const g = svg.append('g')
+                    .attr('fill', 'red')
+                    .attr('stroke', 'black');
+
+        reformatData.forEach(country => {
+            console.log(country)
+            // d3.timeout(() => {
+            //     g.append('circle')
+            //     .attr('transform', ``)
+            // })
+        })
+ 
+    });
 }
 
 function cleanData(country, timeline, arr) {
@@ -401,8 +416,16 @@ function cleanData(country, timeline, arr) {
             obj[country][key][date] += timeline[key][date];
         }
     }
-    console.log(arr)
+};
+
+function getCoord(coord) {
+    if(coord.length === 2) {
+        return coord;
+    } else {
+        getCoord(coord[0])
+    }
 }
+
 getAll()
 getCountries();
 // getFilterCountry('China');
