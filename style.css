@@ -61,22 +61,13 @@ span {
 }
 
 /* D3 */
-.country {
+.map {
     fill: #ccc;
     stroke: #fff;
     stroke-width: .5px;
     stroke-linejoin: round;
   }
   
-.graticule {
-    fill: none;
-    stroke: #000;
-    stroke-opacity: .3;
-    stroke-width: .5px;
-    }
-
-.graticule.outline {
-    stroke: #333;
-    stroke-opacity: 1;
-    stroke-width: 1.5px;
-    }
+.legendV{
+    fill: rgb(113, 128, 104);
+}

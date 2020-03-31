@@ -1,257 +1,174 @@
 const originData = [
     {
-      "100": "Bulgaria",
-      "104": "Myanmar",
-      "108": "Burundi",
-      "112": "Belarus",
-      "116": "Cambodia",
-      "120": "Cameroon",
-      "124": "Canada",
-      "132": "Cabo Verde",
-      "136": "Cayman Islands",
-      "140": "Central African Republic",
-      "144": "Sri Lanka",
-      "148": "Chad",
-      "152": "Chile",
-      "156": "China",
-      "158": "Taiwan",
-      "162": "Christmas Island",
-      "166": "Cocos (Keeling) Islands",
-      "170": "Colombia",
-      "174": "Comoros",
-      "175": "Mayotte",
-      "178": "Congo",
-      "180": "Congo, Democratic Republic of the",
-      "184": "Cook Islands",
-      "188": "Costa Rica",
-      "191": "Croatia",
-      "192": "Cuba",
-      "196": "Cyprus",
-      "203": "Czechia",
-      "204": "Benin",
-      "208": "Denmark",
-      "212": "Dominica",
-      "214": "Dominican Republic",
-      "218": "Ecuador",
-      "222": "El Salvador",
-      "226": "Equatorial Guinea",
-      "231": "Ethiopia",
-      "232": "Eritrea",
-      "233": "Estonia",
-      "234": "Faroe Islands",
-      "238": "Falkland Islands (Malvinas)",
-      "239": "South Georgia and the South Sandwich Islands",
-      "242": "Fiji",
-      "246": "Finland",
-      "248": "Åland Islands",
-      "250": "France",
-      "254": "French Guiana",
-      "258": "French Polynesia",
-      "260": "French Southern Territories",
-      "262": "Djibouti",
-      "266": "Gabon",
-      "268": "Georgia",
-      "270": "Gambia",
-      "275": "Palestine, State of",
-      "276": "Germany",
-      "288": "Ghana",
-      "292": "Gibraltar",
-      "296": "Kiribati",
-      "300": "Greece",
-      "304": "Greenland",
-      "308": "Grenada",
-      "312": "Guadeloupe",
-      "316": "Guam",
-      "320": "Guatemala",
-      "324": "Guinea",
-      "328": "Guyana",
-      "332": "Haiti",
-      "334": "Heard Island and McDonald Islands",
-      "336": "Holy See",
-      "340": "Honduras",
-      "344": "Hong Kong",
-      "348": "Hungary",
-      "352": "Iceland",
-      "356": "India",
-      "360": "Indonesia",
-      "364": "Iran, Islamic Republic of",
-      "368": "Iraq",
-      "372": "Ireland",
-      "376": "Israel",
-      "380": "Italy",
-      "384": "Côte d'Ivoire",
-      "388": "Jamaica",
-      "392": "Japan",
-      "398": "Kazakhstan",
-      "400": "Jordan",
-      "404": "Kenya",
-      "408": "N. Korea",
-      "410": "S. Korea",
-      "414": "Kuwait",
-      "417": "Kyrgyzstan",
-      "418": "Lao People's Democratic Republic",
-      "422": "Lebanon",
-      "426": "Lesotho",
-      "428": "Latvia",
-      "430": "Liberia",
-      "434": "Libya",
-      "438": "Liechtenstein",
-      "440": "Lithuania",
-      "442": "Luxembourg",
-      "446": "Macao",
-      "450": "Madagascar",
-      "454": "Malawi",
-      "458": "Malaysia",
-      "462": "Maldives",
-      "466": "Mali",
-      "470": "Malta",
-      "474": "Martinique",
-      "478": "Mauritania",
-      "480": "Mauritius",
-      "484": "Mexico",
-      "492": "Monaco",
-      "496": "Mongolia",
-      "498": "Moldova, Republic of",
-      "499": "Montenegro",
-      "500": "Montserrat",
-      "504": "Morocco",
-      "508": "Mozambique",
-      "512": "Oman",
-      "516": "Namibia",
-      "520": "Nauru",
-      "524": "Nepal",
-      "528": "Netherlands",
-      "531": "Curaçao",
-      "533": "Aruba",
-      "534": "Sint Maarten (Dutch part)",
-      "535": "Bonaire, Sint Eustatius and Saba",
-      "540": "New Caledonia",
-      "548": "Vanuatu",
-      "554": "New Zealand",
-      "558": "Nicaragua",
-      "562": "Niger",
-      "566": "Nigeria",
-      "570": "Niue",
-      "574": "Norfolk Island",
-      "578": "Norway",
-      "580": "Northern Mariana Islands",
-      "581": "United States Minor Outlying Islands",
-      "583": "Micronesia (Federated States of)",
-      "584": "Marshall Islands",
-      "585": "Palau",
-      "586": "Pakistan",
-      "591": "Panama",
-      "598": "Papua New Guinea",
-      "600": "Paraguay",
-      "604": "Peru",
-      "608": "Philippines",
-      "612": "Pitcairn",
-      "616": "Poland",
-      "620": "Portugal",
-      "624": "Guinea-Bissau",
-      "626": "Timor-Leste",
-      "630": "Puerto Rico",
-      "634": "Qatar",
-      "638": "Réunion",
-      "642": "Romania",
-      "643": "Russian Federation",
-      "646": "Rwanda",
-      "652": "Saint Barthélemy",
-      "654": "Saint Helena, Ascension and Tristan da Cunha",
-      "659": "Saint Kitts and Nevis",
-      "660": "Anguilla",
-      "662": "Saint Lucia",
-      "663": "Saint Martin (French part)",
-      "666": "Saint Pierre and Miquelon",
-      "670": "Saint Vincent and the Grenadines",
-      "674": "San Marino",
-      "678": "Sao Tome and Principe",
-      "682": "Saudi Arabia",
-      "686": "Senegal",
-      "688": "Serbia",
-      "690": "Seychelles",
-      "694": "Sierra Leone",
-      "702": "Singapore",
-      "703": "Slovakia",
-      "704": "Viet Nam",
-      "705": "Slovenia",
-      "706": "Somalia",
-      "710": "South Africa",
-      "716": "Zimbabwe",
-      "724": "Spain",
-      "728": "South Sudan",
-      "729": "Sudan",
-      "732": "Western Sahara",
-      "740": "Suriname",
-      "744": "Svalbard and Jan Mayen",
-      "748": "Eswatini",
-      "752": "Sweden",
-      "756": "Switzerland",
-      "760": "Syrian Arab Republic",
-      "762": "Tajikistan",
-      "764": "Thailand",
-      "768": "Togo",
-      "772": "Tokelau",
-      "776": "Tonga",
-      "780": "Trinidad and Tobago",
-      "784": "UAE",
-      "788": "Tunisia",
-      "792": "Turkey",
-      "795": "Turkmenistan",
-      "796": "Turks and Caicos Islands",
-      "798": "Tuvalu",
-      "800": "Uganda",
-      "804": "Ukraine",
-      "807": "Macedonia, the former Yugoslav Republic of",
-      "818": "Egypt",
-      "826": "UK",
-      "831": "Guernsey",
-      "832": "Jersey",
-      "833": "Isle of Man",
-      "834": "Tanzania, United Republic of",
-      "840": "USA",
-      "850": "Virgin Islands (U.S.)",
-      "854": "Burkina Faso",
-      "858": "Uruguay",
-      "860": "Uzbekistan",
-      "862": "Venezuela, Bolivarian Republic of",
-      "876": "Wallis and Futuna",
-      "882": "Samoa",
-      "887": "Yemen",
-      "894": "Zambia",
-      "004": "Afghanistan",
-      "008": "Albania",
-      "010": "Antarctica",
-      "012": "Algeria",
-      "016": "American Samoa",
-      "020": "Andorra",
-      "024": "Angola",
-      "028": "Antigua and Barbuda",
-      "031": "Azerbaijan",
-      "032": "Argentina",
-      "036": "Australia",
-      "040": "Austria",
-      "044": "Bahamas",
-      "048": "Bahrain",
-      "050": "Bangladesh",
-      "051": "Armenia",
-      "052": "Barbados",
-      "056": "Belgium",
-      "060": "Bermuda",
-      "064": "Bhutan",
-      "068": "Bolivia (Plurinational State of)",
-      "070": "Bosnia and Herzegovina",
-      "072": "Botswana",
-      "074": "Bouvet Island",
-      "076": "Brazil",
-      "084": "Belize",
-      "086": "British Indian Ocean Territory",
-      "090": "Solomon Islands",
-      "092": "Virgin Islands (British)",
-      "096": "Brunei Darussalam"
+      "100": "Bulgaria/42.733883,25.48583",
+      "104": "Myanmar/21.913965,95.956223",
+      "108": "Burundi/-3.373056,29.918886",
+      "112": "Belarus/53.709807,27.953389",
+      "116": "Cambodia/12.565679,104.990963",
+      "120": "Cameroon/7.369722,12.354722",
+      "124": "Canada/56.130366,-106.346771",
+      "136": "Cayman Islands/19.513469,-80.566956",
+      "140": "Central African Republic/6.611111,20.939444",
+      "144": "Sri Lanka/7.873054,80.771797",
+      "148": "Chad/15.454166,18.732207",
+      "152": "Chile/-35.675147,-71.542969",
+      "156": "China/35.86166,104.195397",      
+      "158": "Taiwan/23.69781,120.960515",      
+      "170": "Colombia/4.570868,-74.297333",      
+      "174": "Comoros/-11.875001,43.872219",      
+      "175": "Mayotte/-12.8275,45.166244",      
+      "178": "Congo/-0.228021,15.827659",      
+      "180": "Congo,Democratic Republic of the/-4.038333,21.758664",      
+      "188": "Costa Rica/9.748917,-83.753428",      
+      "191": "Croatia/45.1,15.2",      
+      "192": "Cuba/21.521757,-77.781167",
+      "196": "Cyprus/35.126413,33.429859",
+      "204": "Benin/9.30769,2.315834",
+      "208": "Denmark/56.26392,9.501785",
+      "212": "Dominica/15.414999,-61.370976",
+      "214": "Dominican Republic/18.735693,-70.162651",
+      "218": "Ecuador/-1.831239,-78.183406",
+      "222": "El Salvador/3.794185,-88.89653",
+      "231": "Ethiopia/	9.145,40.489673",
+      "232": "Eritrea/15.179384,39.782334",
+      "233": "Estonia/58.595272,25.013607",
+      "242": "Fiji/-16.578193,179.414413",
+      "246": "Finland/61.92411,25.748151",
+      "250": "France/46.227638,2.213749",
+      "254": "French Guiana/3.933889,-53.125782",
+      "258": "French Polynesia/-17.679742,-149.406843",
+      "266": "Gabon/-0.803689,11.609444",
+      "268": "Georgia/42.315407,43.356892",
+      "276": "Germany/51.165691,10.451526",
+      "288": "Ghana/7.946527,-1.023194",
+      "292": "Gibraltar/36.137741,-5.345374",
+      "296": "Kiribati/	-3.370417,-168.734039",
+      "300": "Greece/39.074208,21.824312",
+      "304": "Greenland/71.706936,-42.604303",
+      "316": "Guam/13.444304,144.793731",
+      "320": "Guatemala/15.783471,-90.230759",
+      "324": "Guinea/9.945587,-9.696645",
+      "328": "Guyana/4.860416,-58.93018",
+      "332": "Haiti/18.971187,-72.285215",
+      "340": "Honduras/15.199999,-86.241905",
+      "344": "Hong Kong/22.396428,114.109497",
+      "348": "Hungary/47.162494,19.503304",
+      "352": "Iceland/64.963051,-19.020835",
+      "356": "India/20.593684,78.96288",
+      "360": "Indonesia/-0.789275,113.921327",
+      "364": "Iran,Islamic Republic of/32.427908,53.688046",
+      "368": "Iraq/33.223191,43.679291",
+      "372": "Ireland/53.41291,-8.24389",
+      "376": "Israel/31.046051,34.851612",
+      "380": "Italy/41.87194,12.56738",
+      "388": "Jamaica/8.109581,-77.297508",
+      "392": "Japan/36.204824,138.252924",
+      "398": "Kazakhstan/48.019573,66.923684",
+      "400": "Jordan/30.585164,36.238414",
+      "404": "Kenya/-0.023559,37.906193",
+      "408": "N. Korea/40.339852,127.510093",
+      "410": "S. Korea/35.907757,127.766922",
+      "414": "Kuwait/29.31166,47.481766",
+      "418": "Lao People's Democratic Republic/19.85627,102.495496",
+      "422": "Lebanon/33.854721,35.862285",
+      "428": "Latvia/56.879635,24.603189",
+      "430": "Liberia/6.428055,-9.429499",
+      "434": "Libya/26.3351,17.228331",
+      "438": "Liechtenstein/47.166,9.555373",
+      "440": "Lithuania/55.169438,23.881275",
+      "442": "Luxembourg/49.815273,6.129583",
+      "450": "Madagascar/-18.766947,46.869107",
+      "454": "Malawi/-13.254308,34.301525",
+      "458": "Malaysia/4.210484,101.975766",
+      "462": "Maldives/3.202778,73.22068",
+      "470": "Malta/35.937496,14.375416",
+      "474": "Martinique/14.641528,-61.024174",
+      "484": "Mexico/23.634501,-102.552784",
+      "492": "Monaco/43.750298,7.412841",
+      "496": "Mongolia/46.862496,103.846656",
+      "498": "Moldova,Republic of/47.411631,28.369885",
+      "504": "Morocco/31.791702,-7.09262",
+      "512": "Oman/21.512583,55.923255",
+      "516": "Namibia/-22.95764,18.49041",
+      "524": "Nepal/28.394857,84.124008",
+      "528": "Netherlands/52.132633,5.291266",
+      "533": "Aruba/12.52111,-69.968338",
+      "554": "New Zealand/-40.900557,174.885971",
+      "558": "Nicaragua/12.865416,-85.207229",
+      "562": "Niger/17.607789,8.081666",
+      "566": "Nigeria/9.081999,8.675277",
+      "578": "Norway/60.472024,8.468946",
+      "585": "Palau/7.51498,134.58252",
+      "586": "Pakistan/30.375321,69.345116",
+      "591": "Panama/8.537981,-80.782127",
+      "604": "Peru/-9.189967,-75.015152",
+      "608": "Philippines/12.879721,121.774017",
+      "616": "Poland/51.919438,19.145136",
+      "620": "Portugal/39.399872,-8.224454",
+      "630": "Puerto Rico/18.220833,-66.590149",
+      "634": "Qatar/25.354826,51.183884",
+      "642": "Romania/45.943161,24.96676",
+      "643": "Russian Federation/61.52401,105.318756",
+      "646": "Rwanda/-1.940278,29.873888",
+      "660": "Anguilla/8.220554,-63.068615",
+      "682": "Saudi Arabia/23.885942,45.079162",
+      "686": "Senegal/14.497401,-14.452362",
+      "688": "Serbia/44.016521,21.005859",
+      "702": "Singapore/1.352083,103.819836",
+      "703": "Slovakia/48.669026,19.699024",
+      "704": "Viet Nam/14.058324,108.277199",
+      "705": "Slovenia/46.151241,14.995463",
+      "710": "South Africa/-30.559482,22.937506",
+      "716": "Zimbabwe/-19.015438,29.154857",
+      "724": "Spain/40.463667,-3.74922",
+      "729": "Sudan/12.862807,30.217636",
+      "732": "Western Sahara/24.215527,-12.885834",
+      "756": "Switzerland/46.818188,8.227512",
+      "764": "Thailand/15.870032,100.992541",
+      "768": "Togo/8.619543,0.824782",
+      "776": "Tonga/-21.178986,-175.198242",
+      "784": "UAE/23.424076,53.847818",
+      "792": "Turkey/38.963745,35.243322",
+      "800": "Uganda/1.373333,32.290275",
+      "804": "Ukraine/48.379433,31.16558",
+      "818": "Egypt/26.820553,30.802498",
+      "826": "UK,55.378051,-3.435973",
+      "831": "Guernsey/49.465691,-2.585278",
+      "832": "Jersey/49.214439,-2.13125",
+      "834": "Tanzania,United Republic of/-6.369028	34.888822",
+      "840": "USA/37.09024,-95.712891",
+      "858": "Uruguay/-32.522779,-55.765835",
+      "860": "Uzbekistan/41.377491,64.585262",
+      "862": "Venezuela,Bolivarian Republic of/6.42375,-66.58973",
+      "882": "Samoa/-13.759029,-172.104629",
+      "887": "Yemen/15.552727,48.516388",
+      "894": "Zambia/-13.133897,27.849332",
+      "004": "Afghanistan/33.93911,67.709953",
+      "008": "Albania/41.153332,20.168331",
+      "010": "Antarctica/-75.250973,-0.071389",
+      "012": "Algeria/28.033886,1.659626",
+      "016": "American Samoa/-14.27097,-170.132217",
+      "020": "Andorra/42.546245,1.601554",
+      "024": "Angola/-11.202692,17.873887",
+      "028": "Antigua and Barbuda/17.060816,-61.796428",
+      "031": "Azerbaijan/40.143105,47.576927",
+      "032": "Argentina/-38.416097,-63.616672",
+      "036": "Australia/-25.274398,133.775136",
+      "040": "Austria/47.516231,14.550072",
+      "044": "Bahamas/25.03428,-77.39628",
+      "048": "Bahrain/25.930414,50.637772",
+      "050": "Bangladesh/23.684994,90.356331",
+      "051": "Armenia/40.069099,45.038189",
+      "052": "Barbados/13.193887,-59.543198",
+      "056": "Belgium/50.503887,4.469936",
+      "060": "Bermuda/32.321384,-64.75737",
+      "064": "Bhutan/27.514162,90.433601",
+      "068": "Bolivia (Plurinational State of)/-16.290154,-63.588653",
+      "076": "Brazil/-14.235004,-51.92528",
     }
   ]
-let reformatData = [];
+let reformatData = {};
+let dateArr = [];
  /* breakpoint */ 
 async function getAll() {
     let all = await axios.get('https://corona.lmao.ninja/all')
@@ -287,12 +204,9 @@ async function getAll() {
     updateClock.innerHTML = `${hr}:${min}${time}`
 
     //reformat numbers
-    let curRes = curCases%1000;
-    let deaRes = curDeaths%1000;
-    let recRes = curRecovered%1000;
-    cases.innerHTML = `${curCases.slice(0, curCases.length-3)},${curRes !== 0 ? curRes : '000'}`;
-    deaths.innerHTML = `${curDeaths.slice(0, curDeaths.length-3)},${deaRes !== 0 ? deaRes : '000'}`;
-    recovers.innerHTML = `${curRecovered.slice(0, curRecovered.length-3)},${recRes !== 0 ? recRes : '000'}`;
+    cases.innerHTML = `${curCases.slice(0, curCases.length-3)},${curCases.slice(curCases.length-3)}`;
+    deaths.innerHTML = `${curDeaths.slice(0, curDeaths.length-3)},${curDeaths.slice(curDeaths.length-3)}`;
+    recovers.innerHTML = `${curRecovered.slice(0, curRecovered.length-3)},${curRecovered.slice(curRecovered.length-3)}`;
 }
 
 async function getCountries() {
@@ -328,107 +242,133 @@ async function getFilterCountry(country) {
 
 async function timeLine() {
     let countries = await axios.get(`https://corona.lmao.ninja/v2/historical`)
-                        .then(response => {
-                            return response.data
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        });
-    let width = 960,
+                            .then(response => {
+                                return response.data
+                            })
+                            .catch(err => {
+                                console.error(err);
+                            });
+
+    // MAP                        
+    let margin = {left: 30, right: 10, bottom: 10, top: 10}
+    var width = 950,
         height = 500;
 
-    let continentColor = d3.scale.category20c();
-    let projection = d3.geo.kavrayskiy7();
-    graticule = d3.geo.graticule();
+    var projection = d3.geoMercator()
+        .translate([width / 2.2, height / 1.5]);
 
-    let path = d3.geo.path()
-            .projection(projection);
+    var svg = d3.select("#chart-area").append("svg")
+        .attr("width", width-margin.left-margin.right)
+        .attr("height", height-margin.bottom-margin.top)
+        .attr("class", "map");
+        
+    var g = svg.append("g");
+    var path = d3.geoPath()
+        .projection(projection);
+    
+    //LEGEND
+    var svg = d3.select("svg");
+    
+    var linearV = d3.scaleLinear()
+                    .domain([0, 15000])
+                    .range(['rgb(252,237,69)','rgb(226,21,21)']);
+    svg.append("g")
+        .attr("class", "legendV")
+        .attr("transform", "translate(20,200)");
+    
+    var legendV = d3.legendColor()
+                    .shapeWidth(30)
+                    .cells(10)
+                    .title("Cases")
+                    .labelFormat(d3.format('.0f'))
+                    .scale(linearV);
 
-    let delay = d3.time.scale()
-                    .domain([new Date(2020-01-22), new Date()])
-                    .range([0, 1000]);
+    svg.select(".legendV")
+        .call(legendV);
 
-    let svg = d3.select("#chart-area")
-            .append("svg")
-                .attr("width", width)
-                .attr("height", height);
+    //DATE
 
-    svg.append("path")
-    .datum(graticule)
-    .attr("class", "graticule")
-    .attr("d", path);
-
-    svg.append("path")
-    .datum(graticule.outline)
-    .attr("class", "graticule outline")
-    .attr("d", path);
-
-
-    d3.json("https://unpkg.com/world-atlas@1/world/110m.json", (error, world) =>{
-    if (error) throw error;
-    svg.selectAll("path")
-        .data(topojson.feature(world,world.objects.countries).features)
-        .enter().append("path")
-        .attr('class', 'country')
-        .attr('fill', (d) => {
-            // console.log(d.geometry.coordinates[0][0])
-            let countryName = originData[0][d.id];
-            let coord = getCoord(d.geometry.coordinates[0][0]);
-
-            if(countryName !== undefined && coord !== undefined) {
-                countryName = originData[0][d.id];
-                coord = getCoord(d.geometry.coordinates[0][0]);
+    // load and display the World
+    d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, topology) {
+        g.selectAll("path")
+        .data(topojson.feature(topology, topology.objects.countries)
+            .features)
+        .enter()
+        .append("path")
+        .attr('class', (d) => {
+            let connectedData = originData[0][d.id];
+            let countryName;
+            if(connectedData !== undefined) {
+                countryName = connectedData.split('/')[0];
             }
             let prev = null;
             let obj = {};
             countries.forEach((country, i) => {
                 if(country.country === countryName && prev === country.country) {
-                    cleanData(countryName, country.timeline, reformatData)
+                    cleanData(countryName, country.timeline.cases, country.timeline.deaths, reformatData)
                 } else if(!prev && country.country === countryName) {
                     prev = countryName;
-                    obj[countryName] = {'xy': coord, 'cases': country.timeline.cases, 'deaths': country.timeline.deaths};
-                    reformatData.push(obj);
+                    if(countryName === 'S. Korea') {
+                        countryName='SouthKorea'
+                    }
+                    if(countryName === 'Lao People\'s Democratic Republic') {
+                        countryName = 'Lao'
+                    }
+
+                    for(let date in country.timeline.cases) {
+                        if(!dateArr.includes(date)) {
+                            dateArr.push(date);
+                        }
+                        if(!reformatData[date]) {
+                            reformatData[date] = {};
+                        }
+                        reformatData[date][countryName] = {'C': country.timeline.cases[date], 'D': country.timeline.deaths[date]}
+                    }
                 }
             });
+            if(countryName) {
+                return countryName
+            }
         })
         .attr("d", path);
 
+        let time = 0;
+        d3.interval(function() {
+            time = (time < dateArr.length) ? time+1 : 0;
+            update(reformatData[dateArr[time]], dateArr[time])
+        },500)
+   });
 
-        const g = svg.append('g')
-                    .attr('fill', 'red')
-                    .attr('stroke', 'black');
+   function update(data, dates) {
+        for(let country in data) {
+            let cases = data[country]['C'];
+            console.log(dates, country, cases)
+            d3.select(`path.${country}`)
+                    .attr('fill', linearV(cases))
+                    .attr('fill-opacity', 1)
+                    .attr('stroke-opacity', 2)
+        } 
+    };
+};
 
-        reformatData.forEach(country => {
-            console.log(country)
-            // d3.timeout(() => {
-            //     g.append('circle')
-            //     .attr('transform', ``)
-            // })
-        })
- 
-    });
-}
-
-function cleanData(country, timeline, arr) {
-    let obj = arr[arr.length-1];
-    for(let key in timeline) {
-        for(let date in obj[country][key]) {
-            obj[country][key][date] += timeline[key][date];
-        }
+//helper functions
+function cleanData(country, timelineC, timelineD, obj) {
+    for(let date in timelineC) {
+        let value = obj[date]
+        value[country]['C'] += timelineC[date]
+        value[country]['D'] += timelineD[date]
     }
 };
 
-function getCoord(coord) {
-    if(coord.length === 2) {
-        return coord;
-    } else {
-        getCoord(coord[0])
-    }
-}
+
+
+
+
+
+
 
 getAll()
 getCountries();
-// getFilterCountry('China');
 timeLine();
 
 //Time
@@ -447,9 +387,6 @@ min < 10 ? min = `0${min}` : min;
 
 currentDate.innerHTML = `${month}/${day}/${year}`
 currentClock.innerHTML = `${hr}:${min}${time}`
-
-
-
 
 
 
