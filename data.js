@@ -270,38 +270,6 @@ async function getCountries() {
             countryDiv.appendChild(newDiv)
         }     
     }
-    
-    // for(let i=0; i < countries.length; i++) {
-    //     //variables and reformat the number 
-    //     let cases = String(countries[i].cases);
-    //     cases = (cases > 999) ? `${cases.slice(0, cases.length-3)},${cases.slice(cases.length-3)}` : cases;
-    //     let todayCases = String(countries[i].todayCases)
-    //     todayCases = (todayCases > 999) ? `${todayCases.slice(0, todayCases.length-3)},${todayCases.slice(todayCases.length-3)}` : todayCases;
-    //     let todayDeaths = String(countries[i].todayDeaths)
-    //     todayDeaths = (todayDeaths > 999) ? `${todayDeaths.slice(0, todayDeaths.length-3)},${todayDeaths.slice(todayDeaths.length-3)}` : todayDeaths;
-    //     let deaths = String(countries[i].deaths)
-    //     deaths = (deaths > 999) ? `${deaths.slice(0, deaths.length-3)},${deaths.slice(deaths.length-3)}` : deaths;
-    //     let recovered = String(countries[i].recovered)
-    //     recovered = (recovered > 999) ? `${recovered.slice(0, recovered.length-3)},${recovered.slice(recovered.length-3)}` : recovered;
-    //     let critical = String(countries[i].critical)
-    //     critical = (critical > 999) ? `${critical.slice(0, critical.length-3)},${critical.slice(critical.length-3)}` : critical;
-
-    //     //div
-    //     let newDiv = document.createElement('div');
-    //     newDiv.style = 'border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
-    //     let htmlMarkup = `<h2>${countries[i].country}</h2>
-    //                         <div style="display: flex; justify-content: space-around;font-size:17px;">
-    //                             <div>
-    //                                 <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
-    //                             </div>
-    //                             <div>
-    //                                 <p>Deaths: ${deaths}</p><p>Recovered: ${recovered}</p><p>Critical: ${critical}</p>
-    //                             </div>
-    //                         </div>
-    //                      `
-    //     newDiv.innerHTML = htmlMarkup;
-    //     countryDiv.append(newDiv)
-    // }
 }
 
 async function timeLine() {
@@ -432,21 +400,21 @@ getCountries();
 timeLine();
 
 //Time
-const currentClock = document.querySelector('.currentClock');
-const currentDate = document.querySelector('.currentDate');
+// const currentClock = document.querySelector('.currentClock');
+// const currentDate = document.querySelector('.currentDate');
 
-let date = new Date();
-let day = date.getDate()
-let month = date.getMonth()+1;
-let year = date.getFullYear();
-let hr = date.getHours();
-let min = date.getMinutes() % 60;
-let time = hr >= 12 ? 'pm':'am';
-hr > 12 ? hr -= 12 : hr;
-min < 10 ? min = `0${min}` : min;
+// let date = new Date();
+// let day = date.getDate()
+// let month = date.getMonth()+1;
+// let year = date.getFullYear();
+// let hr = date.getHours();
+// let min = date.getMinutes() % 60;
+// let time = hr >= 12 ? 'pm':'am';
+// hr > 12 ? hr -= 12 : hr;
+// min < 10 ? min = `0${min}` : min;
 
-currentDate.innerHTML = `${month}/${day}/${year}`
-currentClock.innerHTML = `${hr}:${min}${time}`
+// currentDate.innerHTML = `${month}/${day}/${year}`
+// currentClock.innerHTML = `${hr}:${min}${time}`
 
 
 

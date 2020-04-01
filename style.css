@@ -38,12 +38,12 @@ span {
     height: 80px;
     color: rgb(154, 159, 163);
 }
-.current{
+/* .current{
     width: 150px;
     height: 80px;
     margin-left: 10px;
     color: rgb(154, 159, 163);
-}
+} */
 
 .summary {
     border: 3px solid black;
