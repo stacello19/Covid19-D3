@@ -38,12 +38,6 @@ span {
     height: 80px;
     color: rgb(154, 159, 163);
 }
-/* .current{
-    width: 150px;
-    height: 80px;
-    margin-left: 10px;
-    color: rgb(154, 159, 163);
-} */
 
 .summary {
     border: 3px solid black;
@@ -124,6 +118,12 @@ span {
 }
 .buttons span{
     color: black;
+}
+#play {
+    cursor: pointer;
+}
+#reset {
+    cursor: pointer;
 }
 button {
     height: 30px;

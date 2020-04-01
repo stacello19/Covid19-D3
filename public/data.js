@@ -213,6 +213,9 @@ async function getAll() {
 }
 
 
+
+
+
 async function getCountries() {
     let countries = await axios.get(`https://corona.lmao.ninja/countries`)
                         .then(response => {
@@ -273,6 +276,10 @@ async function getCountries() {
         }     
     }
 }
+
+
+
+
 
 async function timeLine() {
     let countries = await axios.get(`https://corona.lmao.ninja/v2/historical`)
@@ -415,53 +422,39 @@ async function timeLine() {
         time = 0;
         update(reformatData[dateArr[time]])
     })
-    //helper functions
-    function step() {
-        time = (time < dateArr.length) ? time+1 : 0;
-        timeLabel.text(dateArr[time])
-        update(reformatData[dateArr[time]])
-    }
-    
-    function update(data) {
-            for(let country in data) {
-                let cases = data[country]['C'];
-                d3.select(`path.${country}`)
-                        .attr('fill', linearV(cases))
-                        .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 2)
-            } 
-        };
-    };
 
 
-    function cleanData(country, timelineC, timelineD, obj) {
-        for(let date in timelineC) {
-            let value = obj[date]
-            value[country]['C'] += timelineC[date]
-            value[country]['D'] += timelineD[date]
+        //helper functions
+        function step() {
+            time = (time < dateArr.length) ? time+1 : 0;
+            timeLabel.text(dateArr[time])
+            update(reformatData[dateArr[time]])
         }
-    };
+        
+        function update(data) {
+                for(let country in data) {
+                    let cases = data[country]['C'];
+                    d3.select(`path.${country}`)
+                            .attr('fill', linearV(cases))
+                            .attr('fill-opacity', 1)
+                            .attr('stroke-opacity', 2)
+                } 
+            };
+        function cleanData(country, timelineC, timelineD, obj) {
+            for(let date in timelineC) {
+                let value = obj[date]
+                value[country]['C'] += timelineC[date]
+                value[country]['D'] += timelineD[date]
+            }
+        };
+        
+};
 
-getAll()
+getAll();
 getCountries();
 timeLine();
 
-//Time
-// const currentClock = document.querySelector('.currentClock');
-// const currentDate = document.querySelector('.currentDate');
 
-// let date = new Date();
-// let day = date.getDate()
-// let month = date.getMonth()+1;
-// let year = date.getFullYear();
-// let hr = date.getHours();
-// let min = date.getMinutes() % 60;
-// let time = hr >= 12 ? 'pm':'am';
-// hr > 12 ? hr -= 12 : hr;
-// min < 10 ? min = `0${min}` : min;
-
-// currentDate.innerHTML = `${month}/${day}/${year}`
-// currentClock.innerHTML = `${hr}:${min}${time}`
 
 
 
