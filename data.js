@@ -170,6 +170,8 @@ const originData = [
   
 let reformatData = {};
 let dateArr = [];
+let time = 0;
+let interval, newDate;
  /* breakpoint */ 
 async function getAll() {
     let all = await axios.get('https://corona.lmao.ninja/all')
@@ -324,6 +326,7 @@ async function timeLine() {
                         .attr('transform', 'translate(20, 450)')
                         .attr('font-size', '50px')
                         .text('1/22/20')
+
     // load and display the World
     d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, topology) {
         g.selectAll("path")
@@ -367,33 +370,77 @@ async function timeLine() {
         })
         .attr("d", path);
 
-        let time = 0;
-        d3.interval(function() {
-            time = (time < dateArr.length) ? time+1 : 0;
-            timeLabel.text(dateArr[time])
-            update(reformatData[dateArr[time]])
-        },500)
+        interval = setInterval(step, 500)
+
+        //slider
+        const slider = document.querySelector('.slider');
+        const uptoDate1 = document.querySelector('#dateLabel1');
+        const uptoDate2 = document.querySelector('#dateLabel2');
+        uptoDate2.innerHTML = dateArr[dateArr.length-1];
+        slider.setAttribute('max', dateArr.length-1);
+
+        //dates
+        slider.addEventListener('mouseup', function(e) {
+            let index = e.target.value;
+            newDate= dateArr[index];
+            time= dateArr.indexOf(newDate);
+            uptoDate1.innerHTML = newDate;
+        });
+        slider.addEventListener('click', function(e) {
+            let index = e.target.value;
+            newDate= dateArr[index];
+            time= dateArr.indexOf(newDate);
+            uptoDate1.innerHTML = newDate;
+        });
+
    });
 
-   function update(data) {
-        for(let country in data) {
-            let cases = data[country]['C'];
-            d3.select(`path.${country}`)
-                    .attr('fill', linearV(cases))
-                    .attr('fill-opacity', 1)
-                    .attr('stroke-opacity', 2)
-        } 
-    };
-};
+    //play and stop and slider
+    const playBtn = document.querySelector('#play');
+    const resetBtn = document.querySelector('#reset');
 
-//helper functions
-function cleanData(country, timelineC, timelineD, obj) {
-    for(let date in timelineC) {
-        let value = obj[date]
-        value[country]['C'] += timelineC[date]
-        value[country]['D'] += timelineD[date]
+    playBtn.addEventListener('click', function(e) {
+        let btn = this;
+        // if(btn)
+        if(btn.innerHTML === 'Play') {
+            btn.innerHTML = 'Pause';
+            interval = setInterval(step, 500)
+        } else {
+            btn.innerHTML = 'Play';
+            clearInterval(interval);
+        }
+    });
+
+    resetBtn.addEventListener('click', function() {
+        time = 0;
+        update(reformatData[dateArr[time]])
+    })
+    //helper functions
+    function step() {
+        time = (time < dateArr.length) ? time+1 : 0;
+        timeLabel.text(dateArr[time])
+        update(reformatData[dateArr[time]])
     }
-};
+    
+    function update(data) {
+            for(let country in data) {
+                let cases = data[country]['C'];
+                d3.select(`path.${country}`)
+                        .attr('fill', linearV(cases))
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 2)
+            } 
+        };
+    };
+
+
+    function cleanData(country, timelineC, timelineD, obj) {
+        for(let date in timelineC) {
+            let value = obj[date]
+            value[country]['C'] += timelineC[date]
+            value[country]['D'] += timelineD[date]
+        }
+    };
 
 getAll()
 getCountries();

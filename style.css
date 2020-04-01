@@ -90,7 +90,7 @@ span {
 }
 
 .countries {
-    height: 450px;
+    height: 500px;
     overflow-x: none;
     overflow-y: scroll;
 }
@@ -115,3 +115,38 @@ span {
     fill: rgb(68, 68, 173);
     stroke: black;
 }
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+    color: black;
+    font-weight: 900;
+}
+.buttons span{
+    color: black;
+}
+button {
+    height: 30px;
+    margin: 10px;
+    width: 60px;
+    border-radius: 10px;
+    outline: none;
+    background-color: black;
+    color: white;
+    padding: 3px;
+    font-size: 15px;
+    text-shadow: 1px 1px 0px rgb(158, 141, 141);
+    border: 3px solid rgb(126, 122, 122);
+}
+
+#slider-div {
+    margin-top: 3px;
+    width: 300px;
+    text-align: center;
+}
+
+.slider {
+    width: 100%;
+}
+
+
