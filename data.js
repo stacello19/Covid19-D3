@@ -199,7 +199,7 @@ async function getAll() {
     let min = date.getMinutes() % 60;
     let time = hr >= 12 ? 'pm':'am';
     min < 10 ? min = `0${min}` : min;
-    hr > 12 ? hr -= 12 : hr;
+    hr > 12 ? hr -= 12 : (hr < 10) ? `0${hr}` : hr;
 
     updateDate.innerHTML = `${month}/${day}/${year}`
     updateClock.innerHTML = `${hr}:${min}${time}`
