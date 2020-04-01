@@ -10,10 +10,10 @@
 <body>
     <div class='container'>
         <nav>
-            <div class='title'>COVID<span>19</span></div>
+            <div class='title'>Global COVID19 Timeline</div>
             <div class='clock'>
                 <div class='update'>
-                    <h5>LAST UPDATE</h5>
+                    <h5>LAST UPDATED</h5>
                     <div class='updateDate'></div>
                     <div class='updateClock'></div>
                 </div>
@@ -25,28 +25,37 @@
             </div>
         </nav>
         <div class='summary'>
-            <div class='cases'>
-                <p>Cases: <span class='case'></span></p>
+            <div class='me'>
+                <span style="color: black"><b>Contributed by: Stacy S. Cho</b></span><br/>
+                <a style="cursor:pointer;color:gray;" href="www.linkedin.com/in/stacyda"><i class="fa fa-linkedin"></i></a>  @stacyda<br/>
+                <a style="cursor:pointer;color:gray;" href="https://github.com/stacello19"><i class="fa fa-github"></i></a>  @stacello19<br/>
             </div>
-            <div class='deaths'>
-                <p>Deaths: <span class='death'></span></p>
-            </div>
-            <div class='recovers'>
-                <p>Recovers: <span class='recover'></span></p>
+            <div class='overall'>
+                <div class='cases'>
+                    <p>Cases: <span class='case'></span></p>
+                </div>
+                <div class='deaths'>
+                    <p>Deaths: <span class='death'></span></p>
+                </div>
+                <div class='recovers'>
+                    <p>Recovers: <span class='recover'></span></p>
+                </div>
             </div>
         </div>
         <div class='info'>
-            <div class='legend'></div>
+            <div class='legend'>
+                <div class='search'>
+                    <span>[ Search ]</span> <input type="text" id="search" name="name">
+                </div>
+                <div class='countries'></div>
+            </div>
             <div class='row'>
                 <div id='chart-area'></div>
             </div>
         </div>
     </div>
 </body>
-<!-- <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src = "https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
-<script src="https://d3js.org/topojson.v1.min.js"></script> -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>

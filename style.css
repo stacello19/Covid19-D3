@@ -4,49 +4,65 @@ body {
 nav {
     display: flex;
     height: 90px;
-    background-color: aquamarine;
+    background-color: black;
     justify-content: space-between;
 }
 h5 {
     margin: 0;
     text-align: center;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid rgb(109, 105, 105);
 }
-h3 {
+h2 {
     margin: 0;
-    color: rgb(236, 35, 79);
+    color: rgb(14, 5, 5);
 }
 
 .title {
+    margin-left: 10px;
     font-size: 80px;
+    color: rgb(154, 159, 163);
+    text-shadow: 6px 6px 0px rgba(214, 208, 208, 0.2);
 }
 span {
-    color: red;
+    color: rgb(248, 46, 10);
 }
 
 .clock {
     display: flex;
     font-size: 22px;
     text-align: center;
+    margin: 5px;
 }
 .update{
-    border: 3px solid black;
     width: 150px;
     height: 80px;
+    color: rgb(154, 159, 163);
 }
 .current{
-    border: 3px solid black;
     width: 150px;
     height: 80px;
     margin-left: 10px;
+    color: rgb(154, 159, 163);
 }
 
 .summary {
     border: 3px solid black;
+    margin-top:3px;
+    border-radius: 10px;
     height: 90px; 
     display: flex;
-    justify-content: space-evenly;
     font-size: 30px;
+}
+.me {
+    margin: 5px;
+    text-align: center;
+    flex: 1;
+    font-size: 20px;
+}
+.overall{
+    display: flex;
+    flex: 2;
+    justify-content: space-evenly;
 }
 
 .info {
@@ -55,6 +71,28 @@ span {
 }
 .legend {
     flex: 1;
+}
+.search {
+    height: 50px;
+    margin:5px;
+}
+.search input {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 75%;
+    height: 100%;
+    outline: none;
+}
+.search span {
+    color: black;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.countries {
+    height: 450px;
+    overflow-x: none;
+    overflow-y: scroll;
 }
 .row {
     flex: 2;
@@ -69,5 +107,11 @@ span {
   }
   
 .legendV{
-    fill: rgb(113, 128, 104);
+    fill: rgb(198, 198, 236);
+    stroke: black;
+}
+
+.time {
+    fill: rgb(68, 68, 173);
+    stroke: black;
 }

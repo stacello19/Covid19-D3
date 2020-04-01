@@ -167,6 +167,7 @@ const originData = [
       "076": "Brazil/-14.235004,-51.92528",
     }
   ]
+  
 let reformatData = {};
 let dateArr = [];
  /* breakpoint */ 
@@ -209,35 +210,98 @@ async function getAll() {
     recovers.innerHTML = `${curRecovered.slice(0, curRecovered.length-3)},${curRecovered.slice(curRecovered.length-3)}`;
 }
 
-async function getCountries() {
-    let countries = await axios.get('https://corona.lmao.ninja/countries')
-                        .then(response => {
-                            return response.data
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        })
- 
-    const legend = document.querySelector('.legend');
-    for(let i=0; i < countries.length; i++) {
-        let newDiv = document.createElement('div');
-        newDiv.style = 'font-size: 20px; border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: lightgray;'
-        let htmlMarkup = `<h3>${countries[i].country}</h3>
-                         <p>Total Cases: ${countries[i].cases}</p><p>Today Cases: ${countries[i].todayCases}</p><p>Today Deaths: ${countries[i].todayDeaths}</p>`
-        newDiv.innerHTML = htmlMarkup;
-        legend.append(newDiv)
-    }
-}
 
-async function getFilterCountry(country) {
-    let oneCountry = await axios.get(`https://corona.lmao.ninja/countries/${country}`)
+async function getCountries() {
+    let countries = await axios.get(`https://corona.lmao.ninja/countries`)
                         .then(response => {
                             return response.data
                         })
                         .catch(err => {
                             console.error(err);
                         })
-    console.log(oneCountry)
+    
+    const countryDiv = document.querySelector('.countries');
+    const search = document.querySelector('#search');
+    // console.log(search.value)
+    // console.log(search.value === '');
+
+    searchAfter()
+
+    search.addEventListener('input', function(e) {
+        searchAfter(e.target.value) 
+    })
+
+    function searchAfter(name) {
+        let filterCountries = countries;
+        if(name !== undefined) {
+            name = `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`
+            filterCountries = countries.filter(el => el.country.includes(name));
+            countryDiv.innerHTML = '';
+        }       
+
+        for(let i=0; i < filterCountries.length; i++) {
+            let newDiv = document.createElement('div');
+            newDiv.style = 'font-size: 18px;border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
+           
+            let cases = String(filterCountries[i].cases);
+            cases = (cases > 999) ? `${cases.slice(0, cases.length-3)},${cases.slice(cases.length-3)}` : cases;
+            let todayCases = String(filterCountries[i].todayCases)
+            todayCases = (todayCases > 999) ? `${todayCases.slice(0, todayCases.length-3)},${todayCases.slice(todayCases.length-3)}` : todayCases;
+            let todayDeaths = String(filterCountries[i].todayDeaths)
+            todayDeaths = (todayDeaths > 999) ? `${todayDeaths.slice(0, todayDeaths.length-3)},${todayDeaths.slice(todayDeaths.length-3)}` : todayDeaths;
+            let deaths = String(filterCountries[i].deaths)
+            deaths = (deaths > 999) ? `${deaths.slice(0, deaths.length-3)},${deaths.slice(deaths.length-3)}` : deaths;
+            let recovered = String(filterCountries[i].recovered)
+            recovered = (recovered > 999) ? `${recovered.slice(0, recovered.length-3)},${recovered.slice(recovered.length-3)}` : recovered;
+            let critical = String(filterCountries[i].critical)
+            critical = (critical > 999) ? `${critical.slice(0, critical.length-3)},${critical.slice(critical.length-3)}` : critical;
+            
+            let test2 = `<h2>${filterCountries[i].country}</h2>
+                <div style="display: flex; justify-content: space-around;font-size:17px;">
+                    <div>
+                        <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
+                    </div>
+                    <div>
+                        <p>Deaths: ${deaths}</p><p>Recovered: ${recovered}</p><p>Critical: ${critical}</p>
+                    </div>
+                </div>
+            `
+            newDiv.innerHTML = test2;
+            countryDiv.appendChild(newDiv)
+        }     
+    }
+    
+    // for(let i=0; i < countries.length; i++) {
+    //     //variables and reformat the number 
+    //     let cases = String(countries[i].cases);
+    //     cases = (cases > 999) ? `${cases.slice(0, cases.length-3)},${cases.slice(cases.length-3)}` : cases;
+    //     let todayCases = String(countries[i].todayCases)
+    //     todayCases = (todayCases > 999) ? `${todayCases.slice(0, todayCases.length-3)},${todayCases.slice(todayCases.length-3)}` : todayCases;
+    //     let todayDeaths = String(countries[i].todayDeaths)
+    //     todayDeaths = (todayDeaths > 999) ? `${todayDeaths.slice(0, todayDeaths.length-3)},${todayDeaths.slice(todayDeaths.length-3)}` : todayDeaths;
+    //     let deaths = String(countries[i].deaths)
+    //     deaths = (deaths > 999) ? `${deaths.slice(0, deaths.length-3)},${deaths.slice(deaths.length-3)}` : deaths;
+    //     let recovered = String(countries[i].recovered)
+    //     recovered = (recovered > 999) ? `${recovered.slice(0, recovered.length-3)},${recovered.slice(recovered.length-3)}` : recovered;
+    //     let critical = String(countries[i].critical)
+    //     critical = (critical > 999) ? `${critical.slice(0, critical.length-3)},${critical.slice(critical.length-3)}` : critical;
+
+    //     //div
+    //     let newDiv = document.createElement('div');
+    //     newDiv.style = 'border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
+    //     let htmlMarkup = `<h2>${countries[i].country}</h2>
+    //                         <div style="display: flex; justify-content: space-around;font-size:17px;">
+    //                             <div>
+    //                                 <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
+    //                             </div>
+    //                             <div>
+    //                                 <p>Deaths: ${deaths}</p><p>Recovered: ${recovered}</p><p>Critical: ${critical}</p>
+    //                             </div>
+    //                         </div>
+    //                      `
+    //     newDiv.innerHTML = htmlMarkup;
+    //     countryDiv.append(newDiv)
+    // }
 }
 
 async function timeLine() {
@@ -287,7 +351,11 @@ async function timeLine() {
         .call(legendV);
 
     //DATE
-
+    var timeLabel = svg.append('g').append('text')
+                        .attr('class', 'time')
+                        .attr('transform', 'translate(20, 450)')
+                        .attr('font-size', '50px')
+                        .text('1/22/20')
     // load and display the World
     d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, topology) {
         g.selectAll("path")
@@ -302,7 +370,6 @@ async function timeLine() {
                 countryName = connectedData.split('/')[0];
             }
             let prev = null;
-            let obj = {};
             countries.forEach((country, i) => {
                 if(country.country === countryName && prev === country.country) {
                     cleanData(countryName, country.timeline.cases, country.timeline.deaths, reformatData)
@@ -335,14 +402,14 @@ async function timeLine() {
         let time = 0;
         d3.interval(function() {
             time = (time < dateArr.length) ? time+1 : 0;
-            update(reformatData[dateArr[time]], dateArr[time])
+            timeLabel.text(dateArr[time])
+            update(reformatData[dateArr[time]])
         },500)
    });
 
-   function update(data, dates) {
+   function update(data) {
         for(let country in data) {
             let cases = data[country]['C'];
-            console.log(dates, country, cases)
             d3.select(`path.${country}`)
                     .attr('fill', linearV(cases))
                     .attr('fill-opacity', 1)
@@ -359,13 +426,6 @@ function cleanData(country, timelineC, timelineD, obj) {
         value[country]['D'] += timelineD[date]
     }
 };
-
-
-
-
-
-
-
 
 getAll()
 getCountries();
