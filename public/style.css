@@ -65,6 +65,7 @@ span {
 }
 .legend {
     flex: 1;
+    height: 600px;
 }
 .search {
     height: 50px;
@@ -84,7 +85,7 @@ span {
 }
 
 .countries {
-    height: 500px;
+    height: 100%;
     overflow-x: none;
     overflow-y: scroll;
 }
