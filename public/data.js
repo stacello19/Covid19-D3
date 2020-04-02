@@ -182,7 +182,7 @@ async function getAll() {
                             console.error(err);
                         })
     let updateTime = all.updated;
-    let curCases = String(all.cases);
+    let curCases = all.cases;
     let curDeaths = String(all.deaths);
     let curRecovered = String(all.recovered);
     
@@ -205,11 +205,14 @@ async function getAll() {
 
     updateDate.innerHTML = `${month}/${day}/${year}`
     updateClock.innerHTML = `${hr}:${min}${time}`
-
+    curCases = curCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    curDeaths = curDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    curRecovered = curRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
     //reformat numbers
-    cases.innerHTML = `${curCases.slice(0, curCases.length-3)},${curCases.slice(curCases.length-3)}`;
-    deaths.innerHTML = `${curDeaths.slice(0, curDeaths.length-3)},${curDeaths.slice(curDeaths.length-3)}`;
-    recovers.innerHTML = `${curRecovered.slice(0, curRecovered.length-3)},${curRecovered.slice(curRecovered.length-3)}`;
+    cases.innerHTML = curCases;
+    deaths.innerHTML = curDeaths;
+    recovers.innerHTML = curRecovered;
 }
 
 
@@ -245,19 +248,20 @@ async function getCountries() {
             let newDiv = document.createElement('div');
             newDiv.style = 'font-size: 18px;border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
            
-            let cases = String(filterCountries[i].cases);
-            cases = (cases > 999) ? `${cases.slice(0, cases.length-3)},${cases.slice(cases.length-3)}` : cases;
-            let todayCases = String(filterCountries[i].todayCases)
-            todayCases = (todayCases > 999) ? `${todayCases.slice(0, todayCases.length-3)},${todayCases.slice(todayCases.length-3)}` : todayCases;
-            let todayDeaths = String(filterCountries[i].todayDeaths)
-            todayDeaths = (todayDeaths > 999) ? `${todayDeaths.slice(0, todayDeaths.length-3)},${todayDeaths.slice(todayDeaths.length-3)}` : todayDeaths;
-            let deaths = String(filterCountries[i].deaths)
-            deaths = (deaths > 999) ? `${deaths.slice(0, deaths.length-3)},${deaths.slice(deaths.length-3)}` : deaths;
-            let recovered = String(filterCountries[i].recovered)
-            recovered = (recovered > 999) ? `${recovered.slice(0, recovered.length-3)},${recovered.slice(recovered.length-3)}` : recovered;
-            let critical = String(filterCountries[i].critical)
-            critical = (critical > 999) ? `${critical.slice(0, critical.length-3)},${critical.slice(critical.length-3)}` : critical;
-            
+            let cases = filterCountries[i].cases;
+            cases = cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            let todayCases = filterCountries[i].todayCases;
+            todayCases = todayCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            let todayDeaths = filterCountries[i].todayDeaths;
+            todayDeaths = todayDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            let deaths = filterCountries[i].deaths;
+            deaths = deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            let recovered = filterCountries[i].recovered;
+            recovered = recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            let critical = filterCountries[i].critical;
+            critical = critical.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+
             let test2 = `<h2>${filterCountries[i].country}</h2>
                 <div style="display: flex; justify-content: space-around;font-size:17px;">
                     <div>
