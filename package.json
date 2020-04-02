@@ -8,8 +8,5 @@
   },
   "author": "stacy cho",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "node-schedule": "^1.3.2"
-  }
+  "dependencies": {}
 }

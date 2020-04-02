@@ -224,11 +224,8 @@ async function getCountries() {
                         .catch(err => {
                             console.error(err);
                         })
-    
     const countryDiv = document.querySelector('.countries');
     const search = document.querySelector('#search');
-    // console.log(search.value)
-    // console.log(search.value === '');
 
     searchAfter()
 
@@ -455,8 +452,10 @@ getCountries();
 timeLine();
 
 
-
-
+setInterval(() => {
+    getAll();
+    getCountries();
+}, 1000*60*5)
 
 
 
