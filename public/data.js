@@ -262,7 +262,7 @@ async function getCountries() {
             critical = critical.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 
-            let test2 = `<h2>${filterCountries[i].country}</h2>
+            let div2 = `<h2>${filterCountries[i].country}</h2>
                 <div style="display: flex; justify-content: space-around;font-size:17px;">
                     <div>
                         <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
@@ -272,7 +272,7 @@ async function getCountries() {
                     </div>
                 </div>
             `
-            newDiv.innerHTML = test2;
+            newDiv.innerHTML = div2;
             countryDiv.appendChild(newDiv)
         }     
     }
@@ -291,17 +291,19 @@ async function timeLine() {
                                 console.error(err);
                             });
 
-    // MAP                        
-    let margin = {left: 30, right: 10, bottom: 10, top: 10}
-    var width = 950,
-        height = 500;
+    // MAP   
+    const row = document.querySelector('.row');
+
+
+    var width = row.offsetWidth,
+        height = 600;
 
     var projection = d3.geoMercator()
         .translate([width / 2.2, height / 1.5]);
 
     var svg = d3.select("#chart-area").append("svg")
-        .attr("width", width-margin.left-margin.right)
-        .attr("height", height-margin.bottom-margin.top)
+        .attr("width", width)
+        .attr("height", height)
         .attr("class", "map");
         
     var g = svg.append("g");
@@ -316,7 +318,7 @@ async function timeLine() {
                     .range(['rgb(252,237,69)','rgb(226,21,21)']);
     svg.append("g")
         .attr("class", "legendV")
-        .attr("transform", "translate(20,200)");
+        .attr("transform", "translate(20,300)");
     
     var legendV = d3.legendColor()
                     .shapeWidth(30)
@@ -331,7 +333,7 @@ async function timeLine() {
     //DATE
     var timeLabel = svg.append('g').append('text')
                         .attr('class', 'time')
-                        .attr('transform', 'translate(20, 450)')
+                        .attr('transform', 'translate(20, 550)')
                         .attr('font-size', '50px')
                         .text('1/22/20')
 
