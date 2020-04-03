@@ -108,7 +108,7 @@ const originData = [
       "630": "Puerto Rico/18.220833,-66.590149",
       "634": "Qatar/25.354826,51.183884",
       "642": "Romania/45.943161,24.96676",
-      "643": "Russian Federation/61.52401,105.318756",
+      "643": "Russia/61.52401,105.318756",
       "646": "Rwanda/-1.940278,29.873888",
       "660": "Anguilla/8.220554,-63.068615",
       "682": "Saudi Arabia/23.885942,45.079162",
@@ -352,6 +352,7 @@ async function timeLine() {
             }
             let prev = null;
             countries.forEach((country, i) => {
+
                 if(country.country === countryName && prev === country.country) {
                     cleanData(countryName, country.timeline.cases, country.timeline.deaths, reformatData)
                 } else if(!prev && country.country === countryName) {
