@@ -1,7 +1,7 @@
 const originData = [
     {
       "100": "Bulgaria/42.733883,25.48583",
-      "104": "Myanmar/21.913965,95.956223",
+      "104": "Burma/21.913965,95.956223",
       "108": "Burundi/-3.373056,29.918886",
       "112": "Belarus/53.709807,27.953389",
       "116": "Cambodia/12.565679,104.990963",
@@ -56,7 +56,7 @@ const originData = [
       "352": "Iceland/64.963051,-19.020835",
       "356": "India/20.593684,78.96288",
       "360": "Indonesia/-0.789275,113.921327",
-      "364": "Iran,Islamic Republic of/32.427908,53.688046",
+      "364": "Iran/32.427908,53.688046",
       "368": "Iraq/33.223191,43.679291",
       "372": "Ireland/53.41291,-8.24389",
       "376": "Israel/31.046051,34.851612",
@@ -73,7 +73,7 @@ const originData = [
       "422": "Lebanon/33.854721,35.862285",
       "428": "Latvia/56.879635,24.603189",
       "430": "Liberia/6.428055,-9.429499",
-      "434": "Libya/26.3351,17.228331",
+      "434": "Libyan Arab Jamahiriya/26.3351,17.228331",
       "438": "Liechtenstein/47.166,9.555373",
       "440": "Lithuania/55.169438,23.881275",
       "442": "Luxembourg/49.815273,6.129583",
@@ -116,7 +116,7 @@ const originData = [
       "688": "Serbia/44.016521,21.005859",
       "702": "Singapore/1.352083,103.819836",
       "703": "Slovakia/48.669026,19.699024",
-      "704": "Viet Nam/14.058324,108.277199",
+      "704": "Vietnam/14.058324,108.277199",
       "705": "Slovenia/46.151241,14.995463",
       "710": "South Africa/-30.559482,22.937506",
       "716": "Zimbabwe/-19.015438,29.154857",
@@ -132,14 +132,14 @@ const originData = [
       "800": "Uganda/1.373333,32.290275",
       "804": "Ukraine/48.379433,31.16558",
       "818": "Egypt/26.820553,30.802498",
-      "826": "UK,55.378051,-3.435973",
+      "826": "UK/55.378051,-3.435973",
       "831": "Guernsey/49.465691,-2.585278",
       "832": "Jersey/49.214439,-2.13125",
-      "834": "Tanzania,United Republic of/-6.369028	34.888822",
+      "834": "Tanzania, United Republic of/-6.369028,34.888822",
       "840": "USA/37.09024,-95.712891",
       "858": "Uruguay/-32.522779,-55.765835",
       "860": "Uzbekistan/41.377491,64.585262",
-      "862": "Venezuela,Bolivarian Republic of/6.42375,-66.58973",
+      "862": "Venezuela/6.42375,-66.58973",
       "882": "Samoa/-13.759029,-172.104629",
       "887": "Yemen/15.552727,48.516388",
       "894": "Zambia/-13.133897,27.849332",
@@ -163,8 +163,22 @@ const originData = [
       "056": "Belgium/50.503887,4.469936",
       "060": "Bermuda/32.321384,-64.75737",
       "064": "Bhutan/27.514162,90.433601",
-      "068": "Bolivia (Plurinational State of)/-16.290154,-63.588653",
+      "068": "Bolivia/-16.290154,-63.588653",
       "076": "Brazil/-14.235004,-51.92528",
+      "203": "Czechia",
+      "752": "Sweden",
+      "788": 'Tunisia',
+      "478": "Mauritania",
+      "466": "Mali",
+      "854": "Burkina Faso",
+      "072": "Botswana",
+      "508": "Mozambique",
+      "706": "Somalia",
+      "417": "Kyrgyzstan",
+      "598": "Papua New Guinea",
+      "600": "Paraguay",
+      "740": "Suriname",
+
     }
   ]
   
@@ -345,6 +359,7 @@ async function timeLine() {
         .enter()
         .append("path")
         .attr('class', (d) => {
+
             let connectedData = originData[0][d.id];
             let countryName;
             if(connectedData !== undefined) {
@@ -363,6 +378,32 @@ async function timeLine() {
                     if(countryName === 'Lao People\'s Democratic Republic') {
                         countryName = 'Lao'
                     }
+                    if(countryName === 'Libyan Arab Jamahiriya') {
+                        countryName = 'Libya'
+                    }
+                    if(countryName === 'Burkina Faso') {
+                        countryName = 'Burkina'
+                    }
+                    if(countryName === 'Saudi Arabia') {
+                        countryName = 'SaudiA'
+                    }
+                    if(countryName === 'Syrian Arab Republic') {
+                        countryName = 'Syria'
+                    }
+                    if(countryName === 'South Africa') {
+                        countryName = 'SAfrica'
+                    }
+                    if(countryName === 'Central African Republic') {
+                        countryName = 'CAfrica'
+                    }
+                    if(countryName === 'Tanzania, United Republic of') {
+                        countryName = 'Tanzania'
+                    }
+                    if(countryName === 'Papua New Guinea') {
+                        countryName = 'Papua'
+                    }
+  
+                    
 
                     for(let date in country.timeline.cases) {
                         if(!dateArr.includes(date)) {
