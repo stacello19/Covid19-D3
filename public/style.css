@@ -43,7 +43,15 @@ span {
     height: 80px;
     color: rgb(154, 159, 163);
 }
-
+.visitor{
+    width: 150px;
+    height: 80px;
+    color: rgb(154, 159, 163);
+    margin-right: 10px;
+}
+.visitor p {
+    margin-top: 10px;
+}
 .summary {
     border: 3px solid black;
     margin-top:3px;
