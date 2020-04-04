@@ -46,11 +46,11 @@ span {
 .visitor{
     width: 150px;
     height: 80px;
-    color: rgb(154, 159, 163);
-    margin-right: 10px;
+    color: rgb(154, 159, 163) !important;
+    margin-right: 10px !important;
 }
 .visitor p {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 .summary {
     border: 3px solid black;
