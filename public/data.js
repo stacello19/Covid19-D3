@@ -261,7 +261,7 @@ async function getCountries() {
         for(let i=0; i < filterCountries.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.style = 'font-size: 18px;border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
-           
+            let name = filterCountries[i].country;
             let cases = filterCountries[i].cases;
             cases = cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             let todayCases = filterCountries[i].todayCases;
@@ -275,8 +275,13 @@ async function getCountries() {
             let critical = filterCountries[i].critical;
             critical = critical.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-
-            let div2 = `<h2>${filterCountries[i].country}</h2>
+            if(name === 'S. Korea') {
+                name = 'SouthKorea'
+            }
+            if(name === 'Tanzania, United Republic of') {
+                name = 'Tanzania'
+            }
+            let div2 = `<h2 class='${name}'>${name}</h2>
                 <div style="display: flex; justify-content: space-around;font-size:17px;">
                     <div>
                         <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
@@ -326,7 +331,9 @@ async function timeLine() {
     
     //LEGEND
     var svg = d3.select("svg");
-    
+    var tooltip = d3.select('svg').append('g').append('text')
+                    .attr('class', 'hidden');
+
     var linearV = d3.scaleLinear()
                     .domain([0, 15000])
                     .range(['rgb(252,237,69)','rgb(226,21,21)']);
@@ -475,16 +482,97 @@ async function timeLine() {
             timeLabel.text(dateArr[time])
             update(reformatData[dateArr[time]])
         }
-        
+
         function update(data) {
                 for(let country in data) {
                     let cases = data[country]['C'];
                     d3.select(`path.${country}`)
-                            .attr('fill', linearV(cases))
-                            .attr('fill-opacity', 1)
-                            .attr('stroke-opacity', 2)
+                        .attr('fill', linearV(cases))
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 5)
+                        .on('mouseover', function(d) {
+                            var mouse = d3.mouse(svg.node()).map(function(d) {
+                                return parseInt(d);
+                            });
+
+                            if(country=== 'SouthKorea') {
+                                country='S. Korea'
+                            }
+                            if(country=== 'SaudiA') {
+                                country = 'Saudi Arabia'
+                            }
+
+                            if(country=== 'SAfrica') {
+                                country = 'South Africa'
+                            }
+                            if(country=== 'CAfrica') {
+                                country = 'Central African Republic'
+                            }
+                            if(country=== 'Papua') {
+                                country = 'Papua New Guinea'
+                            }
+                            if(country === 'Burma') {
+                                country = 'Myanmar'
+                            }
+                            d3.select(this).style("cursor", "pointer")
+                                            .style("stroke", "black");
+
+                            tooltip.classed('hidden', null)
+                                    .attr('transform', `translate(${(mouse[0]+20)}, ${(mouse[1]+30)})`)
+                                    .attr('fill', 'black')
+                                    .attr('fill-stoke', 5)
+                                    .attr('font-size', '25px')
+                                    .html(`${country}`);
+
+                        })
+                        .on('mouseout', function() {
+                            d3.select(this).style("stroke", "none");
+                            tooltip.classed('hidden', true)
+                        })
+                        .on('click', function(e) {
+                            let name = originData[0][e.id].split('/')[0];
+                            if(name === 'Libyan Arab Jamahiriya') {
+                                name='Libyan'
+                            }
+
+                            if(name === 'Central African Republic') {
+                                name = 'Central'
+                            }
+
+                            if(name === 'South Africa') {
+                                name = 'South'
+                            }
+                            if(name === 'S. Korea') {
+                                name = 'SouthKorea'
+                            }
+                            if(name === 'Saudi Arabia') {
+                                name = 'Saudi'
+                            }
+                            if(name === 'Burkina Faso') {
+                                name = 'Burkina'
+                            }
+                            if(name === 'Papua New Guinea') {
+                                name = 'Papua'
+                            }
+                            if(name === 'Lao People\'s Democratic Republic') {
+                                name = 'Lao'
+                            }
+                            if(name === 'Burma') {
+                                name = 'Myanmar'
+                            }
+                            if(name === 'Tanzania, United Republic of') {
+                                name = 'Tanzania'
+                            }
+                            const scrollCountry = document.querySelector(`.${name}`);
+                            console.log(name)
+                            // const test = document.querySelector('.Saudi')
+                            //console.log(test)
+                            scrollCountry.scrollIntoView();
+                        })
+                            
                 } 
-            };
+        };
+
         function cleanData(country, timelineC, timelineD, obj) {
             for(let date in timelineC) {
                 let value = obj[date]
