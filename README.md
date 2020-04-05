@@ -11,7 +11,7 @@ Pandemic20 is an interactive infographic which combines the benefits of web appl
 I want users to be active participants of the timeline; thus, users are able to
 - start & pause the timeline
 - pick the specific date
-- see the detailed information about the certain country.
+- see the detailed information about the certain country by clicking on the map
 
 Also, the data is fetched periodically every 10 - 15 minutes and updated automatically.
 
