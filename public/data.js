@@ -242,59 +242,48 @@ async function getCountries() {
                             console.error(err);
                         })
     const countryDiv = document.querySelector('.countries');
-    const search = document.querySelector('#search');
 
-    searchAfter()
-
-    search.addEventListener('input', function(e) {
-        searchAfter(e.target.value) 
-    })
-
-    function searchAfter(name) {
-        let filterCountries = countries;
-        if(name !== undefined) {
-            name = `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`
-            filterCountries = countries.filter(el => el.country.includes(name));
-            countryDiv.innerHTML = '';
-        }       
-
-        for(let i=0; i < filterCountries.length; i++) {
-            let newDiv = document.createElement('div');
-            newDiv.style = 'font-size: 18px;border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
-            let name = filterCountries[i].country;
-            let cases = filterCountries[i].cases;
-            cases = cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            let todayCases = filterCountries[i].todayCases;
-            todayCases = todayCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            let todayDeaths = filterCountries[i].todayDeaths;
+    for(let i=0; i < countries.length; i++) {
+        let newDiv = document.createElement('div');
+        newDiv.style = 'font-size: 18px;border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
+        let name = countries[i].country;
+        let cases = countries[i].cases;
+        cases = cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        let todayCases = countries[i].todayCases;
+        todayCases = todayCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        let todayDeaths = countries[i].todayDeaths;
+        if(todayDeaths === null) {
+            todayDeaths = 0;
+        } else {
             todayDeaths = todayDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            let deaths = filterCountries[i].deaths;
-            deaths = deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            let recovered = filterCountries[i].recovered;
-            recovered = recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            let critical = filterCountries[i].critical;
-            critical = critical.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        let deaths = countries[i].deaths;
+        deaths = deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        let recovered = countries[i].recovered;
+        recovered = recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        let critical = countries[i].critical;
+        critical = critical.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-            if(name === 'S. Korea') {
-                name = 'SouthKorea'
-            }
-            if(name === 'Tanzania, United Republic of') {
-                name = 'Tanzania'
-            }
-            let div2 = `<h2 class='${name}'>${name}</h2>
-                <div style="display: flex; justify-content: space-around;font-size:17px;">
-                    <div>
-                        <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
-                    </div>
-                    <div>
-                        <p>Deaths: ${deaths}</p><p>Recovered: ${recovered}</p><p>Critical: ${critical}</p>
-                    </div>
+        if(name === 'S. Korea') {
+            name = 'SouthKorea'
+        }
+        if(name === 'Tanzania, United Republic of') {
+            name = 'Tanzania'
+        }
+
+        let div2 = `<h2 class='${name}'>${name}</h2>
+            <div style="display: flex; justify-content: space-around;font-size:17px;">
+                <div>
+                    <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
                 </div>
-            `
-            newDiv.innerHTML = div2;
-            countryDiv.appendChild(newDiv)
-        }     
-    }
+                <div>
+                    <p>Deaths: ${deaths}</p><p>Recovered: ${recovered}</p><p>Critical: ${critical}</p>
+                </div>
+            </div>
+        `
+        newDiv.innerHTML = div2;
+        countryDiv.appendChild(newDiv)
+    }  
 }
 
 
@@ -386,7 +375,7 @@ async function timeLine() {
                         countryName = 'Lao'
                     }
                     if(countryName === 'Libyan Arab Jamahiriya') {
-                        countryName = 'Libya'
+                        countryName = 'Libyan'
                     }
                     if(countryName === 'Burkina Faso') {
                         countryName = 'Burkina'
@@ -564,9 +553,6 @@ async function timeLine() {
                                 name = 'Tanzania'
                             }
                             const scrollCountry = document.querySelector(`.${name}`);
-                            console.log(name)
-                            // const test = document.querySelector('.Saudi')
-                            //console.log(test)
                             scrollCountry.scrollIntoView();
                         })
                             
