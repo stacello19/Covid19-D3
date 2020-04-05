@@ -424,6 +424,7 @@ async function timeLine() {
         const slider = document.querySelector('.slider');
         const uptoDate1 = document.querySelector('#dateLabel1');
         const uptoDate2 = document.querySelector('#dateLabel2');
+        uptoDate1.innerHTML = dateArr[0]
         uptoDate2.innerHTML = dateArr[dateArr.length-1];
         slider.setAttribute('max', dateArr.length-1);
 
