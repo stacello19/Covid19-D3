@@ -224,9 +224,9 @@ async function getAll() {
     curRecovered = curRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
     //reformat numbers
-    cases.innerHTML = curCases;
-    deaths.innerHTML = curDeaths;
-    recovers.innerHTML = curRecovered;
+    cases.innerHTML = `Cases: ${curCases}`;
+    deaths.innerHTML = `Deaths: ${curDeaths}`;
+    recovers.innerHTML = `Recovered: ${curRecovered}`;
 }
 
 
@@ -245,7 +245,7 @@ async function getCountries() {
 
     for(let i=0; i < countries.length; i++) {
         let newDiv = document.createElement('div');
-        newDiv.style = 'font-size: 18px;border: 5px solid black; margin: 3px; text-align: center; border-radius: 10px; background-color: rgb(226, 221, 221);'
+        newDiv.style = 'font-size: 15px;border: 3px solid black; margin: 3px; border-radius: 10px; background-color: rgb(248, 248, 248);'
         let name = countries[i].country;
         let cases = countries[i].cases;
         cases = cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -271,13 +271,13 @@ async function getCountries() {
             name = 'Tanzania'
         }
 
-        let div2 = `<h2 class='${name}'>${name}</h2>
-            <div style="display: flex; justify-content: space-around;font-size:17px;">
+        let div2 = `<h2 class='${name}' style="margin-left: 10px">${name}</h2>
+            <div style="display: flex; justify-content: space-around;font-size:16px;">
                 <div>
-                    <p>Total Cases: ${cases}</p><p>Today Cases: ${todayCases}</p><p>Today Deaths: ${todayDeaths}</p>
+                    <p>Total Cases: <b>${cases}</b></p><p>Today Cases: <b>${todayCases}</b></p><p>Today Deaths: <b>${todayDeaths}</b></p>
                 </div>
                 <div>
-                    <p>Deaths: ${deaths}</p><p>Recovered: ${recovered}</p><p>Critical: ${critical}</p>
+                    <p>Deaths: <b>${deaths}</b></p><p>Recovered: <b>${recovered}</b></p><p>Critical: <b>${critical}</b></p>
                 </div>
             </div>
         `
@@ -429,6 +429,12 @@ async function timeLine() {
         slider.setAttribute('max', dateArr.length-1);
 
         //dates
+        slider.addEventListener('input', function(e) {
+            let index = e.target.value;
+            newDate= dateArr[index];
+            time= dateArr.indexOf(newDate);
+            uptoDate1.innerHTML = newDate;
+        })
         slider.addEventListener('mouseup', function(e) {
             let index = e.target.value;
             newDate= dateArr[index];
@@ -553,7 +559,14 @@ async function timeLine() {
                             if(name === 'Tanzania, United Republic of') {
                                 name = 'Tanzania'
                             }
+                            const parent = document.querySelector('.countries')
+                            parent.childNodes.forEach(child => {
+                                if(child.firstChild.className.includes('active')) {
+                                    child.firstChild.classList.remove("active");
+                                }
+                            })
                             const scrollCountry = document.querySelector(`.${name}`);
+                            scrollCountry.className += " active";
                             scrollCountry.scrollIntoView();
                         })
                             

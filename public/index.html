@@ -31,21 +31,12 @@
                 <a style="cursor:pointer;color:gray;" href="https://github.com/stacello19"><i class="fa fa-github"></i></a>  @stacello19<br/>
             </div>
             <div class='overall'>
-                <div class='cases'>
-                    <p>Cases: <span class='case'></span></p>
-                </div>
-                <div class='deaths'>
-                    <p>Deaths: <span class='death'></span></p>
-                </div>
-                <div class='recovers'>
-                    <p>Recovers: <span class='recover'></span></p>
-                </div>
+                    <div class='global' style="text-align: center;">🌐 World Wide</div>
+                    <div style="display: flex;justify-content: space-evenly;"><span class='case'></span> <span class='death'></span> <span class='recover'></span></div>
             </div>
         </div>
         <div class='info'>
-            <div class='legend'>
-                <div class='countries'></div>
-            </div>
+            <div class='countries'></div>
             <div class='row'>
                 <div class='buttons'>
                     <button id="play" class="btn btn-primary">Pause</button>
@@ -54,6 +45,7 @@
                         <label>Date: <span id="dateLabel1">1/22/20</span> - <span id="dateLabel2">03/31/2020</span></label>
                         <div id="date-slider">
                             <input class='slider' min='0' value='0' type='range'/>
+                            <span class='box'></span>
                         </div>
                     </div>
                 </div>
