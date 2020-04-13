@@ -291,7 +291,7 @@ async function getCountries() {
 
 
 async function timeLine() {
-    let countries = await axios.get(`https://corona.lmao.ninja/v2/historical`)
+    let countries = await axios.get(`https://corona.lmao.ninja/v2/historical?lastdays=all `)
                             .then(response => {
                                 return response.data
                             })
