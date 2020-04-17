@@ -188,7 +188,7 @@ let time = 0;
 let interval, newDate;
  /* breakpoint */ 
 async function getAll() {
-    let all = await axios.get('https://corona.lmao.ninja/all')
+    let all = await axios.get('https://corona.lmao.ninja/v2/all')
                         .then(response => {
                             return response.data
                         })
@@ -234,7 +234,7 @@ async function getAll() {
 
 
 async function getCountries() {
-    let countries = await axios.get(`https://corona.lmao.ninja/countries`)
+    let countries = await axios.get(`https://corona.lmao.ninja/v2/countries`)
                         .then(response => {
                             return response.data
                         })
