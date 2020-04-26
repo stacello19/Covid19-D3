@@ -324,8 +324,8 @@ async function timeLine() {
                     .attr('class', 'hidden');
 
     var linearV = d3.scaleLinear()
-                    .domain([0, 15000])
-                    .range(['rgb(252,237,69)','rgb(226,21,21)']);
+                    .domain([0, 15000, 100000])
+                    .range(['rgb(252,237,69)','rgb(253, 169, 21)', 'rgb(226,21,21)']);
     svg.append("g")
         .attr("class", "legendV")
         .attr("transform", "translate(20,300)");
