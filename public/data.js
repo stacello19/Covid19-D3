@@ -324,7 +324,7 @@ async function timeLine() {
                     .range(['rgb(252,237,69)','rgb(253, 169, 21)', 'rgb(226,21,21)']);
     svg.append("g")
         .attr("class", "legendV")
-        .attr("transform", "translate(20,300)");
+        .attr("transform", "translate(30,400)");
     
     var legendV = d3.legendColor()
                     .shapeWidth(30)
