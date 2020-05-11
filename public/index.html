@@ -4,55 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Stacy Cho, Pandemic20 - Interactive Infographic about Covid19">
-    <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel='stylesheet' href='./style.css'> 
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
     <title>PANDEMIC20 - Covid19 Timeline</title>
 </head>
 <body>
     <div class='container'>
+
         <nav>
-            <div class='title'><span>Global </span>COVID19 <span>Timeline</span></div>
-            <div class='clock'>
-                <div class='visitor'>
-                    <h5>TOTAL VISITOR</h5>
-                    <p>7578</p>
-                </div>
-                <div class='update'>
-                    <h5>LAST UPDATED</h5>
-                    <div class='updateDate'></div>
-                    <div class='updateClock'></div>
-                </div>
+            <div class='title'>
+                <div class='earth'>🌐</div> 
+                <div class='information'><div>Cases</div><div class='case number'></div></div>
+                <div class='information'><div>Deaths</div><div class='death number'></div></div> 
+                <div class='information'><div>Recovered</div><div class='recover number'></div></div>
             </div>
-        </nav>
-        <div class='summary'>
-            <div class='me'>
-                <span style="color: black"><b>Contributed by: Stacy S. Cho</b></span><br/>
-                <a style="cursor:pointer;color:gray;" href="https://www.linkedin.com/in/stacyda"><i class="fa fa-linkedin"></i></a>  @stacyda<br/>
-                <a style="cursor:pointer;color:gray;" href="https://github.com/stacello19"><i class="fa fa-github"></i></a>  @stacello19<br/>
-            </div>
-            <div class='overall'>
-                    <div class='global' style="text-align: center;">🌐 World Wide</div>
-                    <div style="display: flex;justify-content: space-evenly;"><span class='case'></span> <span class='death'></span> <span class='recover'></span></div>
-            </div>
-        </div>
-        <div class='info'>
-            <div class='countries'></div>
-            <div class='row'>
-                <div class='buttons'>
-                    <button id="play" class="btn btn-primary">Pause</button>
-                    <button id="reset" class="btn btn-primary">Reset</button>
-                    <div id="slider-div">
+            <div class='control'>
+                    <button id="play" class="btn btn-primary">PAUSE</button>
+                    <button id="reset" class="btn btn-primary">BACK TO JANUARY</button>
+                    <!-- <div id="slider-div">
                         <label>Date: <span id="dateLabel1">1/22/20</span> - <span id="dateLabel2">03/31/2020</span></label>
                         <div id="date-slider">
                             <input class='slider' min='0' value='0' type='range'/>
                             <span class='box'></span>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+            </div>
+        </nav>
+
+        <div class='info'>
+            <div class='countries'></div>
+            <div class='row'>
                 <div id='chart-area'></div>
             </div>
+            <div class='dateTime'></div>
         </div>
+
+        <div class='footer'>
+            <div class='visitor'>
+                <h5>TOTAL VISITOR</h5>
+                <p>10,098</p>
+            </div>
+            <div class='update'>
+                <h5>LAST UPDATED</h5>
+                <div class='updateClock'></div>
+            </div>
+            <div class='me'>
+                <a style="cursor:pointer;color:gray;" href="https://www.linkedin.com/in/stacyda"><i class="fa fa-linkedin"></i></a>
+                <a style="cursor:pointer;color:gray;" href="https://github.com/stacello19"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+        
     </div>
 </body>
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">

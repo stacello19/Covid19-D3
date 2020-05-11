@@ -184,6 +184,7 @@ const originData = [
   
 let reformatData = {};
 let dateArr = [];
+let monthArr = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 let time = 0;
 let interval, newDate;
  /* breakpoint */ 
@@ -202,31 +203,26 @@ async function getAll() {
     
     //updateClock
     const updateClock = document.querySelector('.updateClock');
-    const updateDate = document.querySelector('.updateDate');
     const cases = document.querySelector('.case');
     const deaths = document.querySelector('.death');
     const recovers = document.querySelector('.recover');
 
     let date = new Date(updateTime);
-    let day = date.getDate()
-    let month = date.getMonth()+1;
-    let year = date.getFullYear();
     let hr = date.getHours();
     let min = date.getMinutes() % 60;
     let time = hr >= 12 ? 'pm':'am';
     min < 10 ? min = `0${min}` : min;
     hr > 12 ? hr -= 12 : (hr < 10) ? `0${hr}` : hr;
 
-    updateDate.innerHTML = `${month}/${day}/${year}`
     updateClock.innerHTML = `${hr}:${min}${time}`
     curCases = curCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     curDeaths = curDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     curRecovered = curRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
     //reformat numbers
-    cases.innerHTML = `Cases: ${curCases}`;
-    deaths.innerHTML = `Deaths: ${curDeaths}`;
-    recovers.innerHTML = `Recovered: ${curRecovered}`;
+    cases.innerHTML = `${curCases}`;
+    deaths.innerHTML = `${curDeaths}`;
+    recovers.innerHTML = `${curRecovered}`;
 }
 
 
@@ -245,7 +241,7 @@ async function getCountries() {
 
     for(let i=0; i < countries.length; i++) {
         let newDiv = document.createElement('div');
-        newDiv.style = 'font-size: 15px;border: 3px solid black; margin: 3px; border-radius: 10px; background-color: rgb(248, 248, 248);'
+        newDiv.style = 'font-size: 15px; border-bottom: 2px solid rgba(0,0,0,.15)'
         let name = countries[i].country;
         let cases = countries[i].cases;
         cases = cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -343,9 +339,9 @@ async function timeLine() {
     //DATE
     var timeLabel = svg.append('g').append('text')
                         .attr('class', 'time')
-                        .attr('transform', 'translate(20, 550)')
+                        .attr('transform', 'translate(770, 80)')
                         .attr('font-size', '50px')
-                        .text('1/22/20')
+                        .text('Jan 22, 2020')
 
     // load and display the World
     d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, topology) {
@@ -421,32 +417,43 @@ async function timeLine() {
         interval = setInterval(step, 500)
 
         //slider
-        const slider = document.querySelector('.slider');
-        const uptoDate1 = document.querySelector('#dateLabel1');
-        const uptoDate2 = document.querySelector('#dateLabel2');
-        uptoDate1.innerHTML = dateArr[0]
-        uptoDate2.innerHTML = dateArr[dateArr.length-1];
-        slider.setAttribute('max', dateArr.length-1);
 
-        //dates
-        slider.addEventListener('input', function(e) {
-            let index = e.target.value;
-            newDate= dateArr[index];
-            time= dateArr.indexOf(newDate);
-            uptoDate1.innerHTML = newDate;
-        })
-        slider.addEventListener('mouseup', function(e) {
-            let index = e.target.value;
-            newDate= dateArr[index];
-            time= dateArr.indexOf(newDate);
-            uptoDate1.innerHTML = newDate;
-        });
-        slider.addEventListener('click', function(e) {
-            let index = e.target.value;
-            newDate= dateArr[index];
-            time= dateArr.indexOf(newDate);
-            uptoDate1.innerHTML = newDate;
-        });
+        const timeDiv = document.querySelector('.dateTime');
+        let prevMonth = null;
+
+        for(let i=0; i < dateArr.length; i++) {
+            let newDiv = document.createElement('div');
+            newDiv.className= 'test'
+            let date = dateArr[i].split('/');
+            let month = date[0];
+            let days = date[1];
+            let div2;
+            if(prevMonth !== null && prevMonth === month) {
+                div2 = `<div class='days'>${days}</div>`
+            } else {
+                div2 = `<div class='mth'>${monthArr[month-1]}</div><div class='days'>${days}</div>`
+            }
+            prevMonth = month;
+
+            newDiv.innerHTML = div2;
+            timeDiv.appendChild(newDiv)
+
+       
+            newDiv.addEventListener('click', () => {
+                    timeDiv.childNodes.forEach(child => {
+                        if(child.lastChild.className.includes('active2')) {
+                            child.lastChild.classList.remove("active2");
+                        }
+                    })
+    
+                    newDiv.lastChild.className += " active2";
+                    let newDate = `${month}/${days}/20`;
+                    let test2 = dateArr.indexOf(newDate);
+                    console.log(test2)
+                    time = dateArr.indexOf(newDate);
+            })
+        }
+
 
    });
 
@@ -456,12 +463,12 @@ async function timeLine() {
 
     playBtn.addEventListener('click', function(e) {
         let btn = this;
-        // if(btn)
-        if(btn.innerHTML === 'Play') {
-            btn.innerHTML = 'Pause';
+        
+        if(btn.innerHTML === 'PLAY') {
+            btn.innerHTML = 'PAUSE';
             interval = setInterval(step, 500)
         } else {
-            btn.innerHTML = 'Play';
+            btn.innerHTML = 'PLAY';
             clearInterval(interval);
         }
     });
@@ -475,7 +482,8 @@ async function timeLine() {
         //helper functions
         function step() {
             time = (time < dateArr.length) ? time+1 : 0;
-            timeLabel.text(dateArr[time])
+            let newDate2 = dateArr[time].split('/')
+            timeLabel.text(`${monthArr[newDate2[0]-1]} ${newDate2[1]}, 2020`)
             update(reformatData[dateArr[time]])
         }
 
@@ -560,13 +568,15 @@ async function timeLine() {
                                 name = 'Tanzania'
                             }
                             const parent = document.querySelector('.countries')
+                            
                             parent.childNodes.forEach(child => {
-                                if(child.firstChild.className.includes('active')) {
-                                    child.firstChild.classList.remove("active");
+                                if(child.className.includes('active')) {
+                                    child.classList.remove("active");
                                 }
                             })
                             const scrollCountry = document.querySelector(`.${name}`);
-                            scrollCountry.className += " active";
+                            
+                            scrollCountry.parentNode.className += " active";
                             scrollCountry.scrollIntoView();
                         })
                             
