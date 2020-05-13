@@ -300,7 +300,7 @@ async function timeLine() {
 
 
     var width = row.offsetWidth,
-        height = 600;
+        height = row.offsetHeight;
 
     var projection = d3.geoMercator()
         .translate([width / 2.2, height / 1.5]);
@@ -339,7 +339,7 @@ async function timeLine() {
     //DATE
     var timeLabel = svg.append('g').append('text')
                         .attr('class', 'time')
-                        .attr('transform', 'translate(770, 80)')
+                        .attr('transform', `translate(${width-(width*0.345)}, 80)`)
                         .attr('font-size', '50px')
                         .text('Jan 22, 2020')
 

@@ -25,6 +25,13 @@ h2 {
     justify-content: space-evenly;
     padding: 8px;
 }
+.titleName {
+    position: absolute;
+    margin: 0;
+    font-size: 1rem;
+    margin-left: -3rem;
+    z-index: 15.5;
+}
 .earth {
     align-items: center;
     display: flex;
@@ -68,12 +75,13 @@ a {
 
 .info {
     display: flex;
+    height: 100vh;
     flex: 2;
     box-shadow: 0px 0px 3px rgba(0,0,0,.15);
 }
 
 .countries {
-    height: 40rem;
+    height: 100vh;
     flex: 1;
     margin: 2px;
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,.15);
@@ -81,9 +89,9 @@ a {
     overflow-y: scroll;
 }
 .dateTime {
-    flex: 0.1;
+    flex: 0.13;
     background: rgba(19, 18, 18, 0.883);
-    max-height: 40rem;
+    height: 100vh;
     overflow-x: none;
     overflow-y: scroll;
 }
@@ -100,6 +108,7 @@ a {
 }
 .row {
     flex: 3;
+    height: 100vh;
 }
 
 .days {
