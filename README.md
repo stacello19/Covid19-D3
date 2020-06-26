@@ -1,6 +1,6 @@
 # Covid19/Pandemic20 (https://s3.amazonaws.com/covid20.today/index.html)
 
-![](https://user-images.githubusercontent.com/45322680/78461416-ab570400-7696-11ea-95f5-c8b06b2395a4.gif)
+![covid19Gif](https://user-images.githubusercontent.com/45322680/85887961-afd31a80-b7b6-11ea-9ecd-aca133c5c795.gif)
 
 # Overview
 
